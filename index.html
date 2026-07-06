@@ -46,6 +46,9 @@ header h1 span { color:var(--green); }
 .reason-card span { font-size:12px; color:#93a4b8; }
 .reason-card h3 { font-size:15px; margin:6px 0; color:#e5e7eb; }
 .reason-card p { font-size:13px; line-height:1.5; color:#aab3c2; margin:0; }
+.explain-headline { font-size:22px; font-weight:700; color:#e5e7eb; margin:12px 0 8px; }
+.explain-list { margin:0; padding-left:18px; color:#aab3c2; font-size:13px; line-height:1.7; }
+.explain-list li { margin:4px 0; }
 .health-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; margin-bottom:28px; }
 .health-chip { border-radius:6px; border:1px solid var(--border); background:#0b111a; padding:10px; }
 .health-chip b { display:block; font-size:13px; }
@@ -53,6 +56,32 @@ header h1 span { color:var(--green); }
 .health-chip.ok { border-color:#14532d; }
 .health-chip.warn { border-color:#854d0e; }
 .health-chip.error { border-color:#7f1d1d; }
+.observation-note { color:#9aa8ba; font-size:13px; margin:10px 0 14px; }
+.observation-table td span { display:block; color:#8b98aa; font-size:12px; margin-top:2px; }
+.obs-trigger { display:inline-block; min-width:44px; text-align:center; border-radius:12px; padding:2px 8px; font-size:11px; font-weight:700; }
+.obs-trigger.review { background:rgba(245,158,11,0.16); color:var(--amber); }
+.obs-trigger.watch { background:rgba(59,130,246,0.14); color:var(--blue); }
+.obs-trigger.missing { background:rgba(107,114,128,0.16); color:var(--muted); }
+.corr-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin-top:12px; }
+.corr-bubble { background:#0b111a; border:1px solid #1c2735; border-radius:8px; padding:14px; }
+.corr-bubble-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+.corr-bubble-head b { display:block; font-size:14px; color:#e5e7eb; }
+.corr-bubble-head span { display:block; color:#8b98aa; font-size:12px; margin-top:2px; }
+.corr-bubble-head strong { color:var(--cyan); font-size:18px; font-family:monospace; }
+.corr-chip-row { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.corr-chip { min-width:118px; border-radius:7px; border:1px solid var(--border); padding:8px; background:#111827; }
+.corr-chip.prod { border-color:rgba(6,182,212,0.35); }
+.corr-chip.obs { border-color:rgba(245,158,11,0.38); }
+.corr-chip b { display:block; font-family:monospace; font-size:12px; color:#eef2f7; }
+.corr-chip span { display:block; color:#93a4b8; font-size:12px; line-height:1.35; margin-top:2px; }
+.corr-chip em { display:block; color:#cbd5e1; font-style:normal; font-size:11px; margin-top:3px; }
+.corr-meta { display:flex; justify-content:space-between; gap:12px; color:#8b98aa; font-size:12px; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px; }
+.cluster-breadth-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; margin:12px 0; }
+.cluster-breadth-card { background:#0b111a; border:1px solid #1c2735; border-radius:8px; padding:12px; }
+.cluster-breadth-card span { display:block; color:#8b98aa; font-size:12px; }
+.cluster-breadth-card b { display:block; color:#e5e7eb; font-size:22px; margin:4px 0; }
+.cluster-breadth-card em { display:block; color:#93a4b8; font-style:normal; font-size:12px; line-height:1.4; }
+.cluster-breadth-card b .obs-trigger { font-size:12px; min-width:52px; }
 
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin-bottom:36px; }
 .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 22px; transition:border-color .2s; }
@@ -124,7 +153,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 <header>
   <div>
     <h1>v4.7+ <span>ETF 动量轮动</span> — 实盘仪表盘</h1>
-    <div class="subtitle">28 只 ETF · 生成于 2026-07-03 10:59:28</div>
+    <div class="subtitle">28 只 ETF · 生成于 2026-07-05 20:58:46</div>
   </div>
   <div><span class="badge badge-paper">PAPER TRADING</span></div>
 </header>
@@ -154,10 +183,10 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
         <div class="defense" style="width:47.82%"></div>
       </div>
       <div class="metrics-row">
-        <div><span>breadth66</span><b>N/A</b></div>
-        <div><span>组合波动率</span><b>N/A%</b></div>
-        <div><span>波动目标</span><b>N/A%</b></div>
-        <div><span>压缩风险腿</span><b>否</b></div>
+        <div><span>breadth66</span><b>0.522</b></div>
+        <div><span>组合波动率</span><b>25.1%</b></div>
+        <div><span>波动目标</span><b>21.0%</b></div>
+        <div><span>压缩风险腿</span><b>是</b></div>
       </div>
       <table class="holdings-table">
         <thead><tr><th>代码</th><th>名称</th><th>角色</th><th>类别</th><th>权重</th><th>平滑分</th><th>66日</th></tr></thead>
@@ -213,8 +242,1003 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
           <h3>银华日利(货币)</h3>
           <p>511880 入选：平滑分 0.0001，66日收益 +0.3%。</p>
         </div>
+        
+        <div class="reason-card">
+          <span>仓位</span>
+          <h3>进攻/防御比例</h3>
+          <p>breadth66=0.522，组合波动率=25.1%，风险腿已被波动率目标压缩。</p>
+        </div>
         </section>
-<section class="health-strip"><div class="health-chip ok"><b>tracker</b><span>cycle_tracker.json 可读取</span></div><div class="health-chip ok"><b>current_holdings</b><span>current_holdings.json 可读取</span></div><div class="health-chip ok"><b>price_cache</b><span>价格缓存包含 76 个标的</span></div><div class="health-chip warn"><b>qdii_premium</b><span>暂未接入实时溢价数据源</span></div></section>
+
+    <section class="panel rebalance-explain-panel">
+      <div class="panel-title">
+        <h2>调仓解释摘要</h2><span>自动生成，只解释当前信号</span>
+      </div>
+      <div class="explain-headline">当前 52% 进攻 / 48% 防御</div>
+      <ul class="explain-list"><li>breadth66=0.522，组合波动率=25.1%，风险腿已被波动率目标压缩。</li><li>进攻腿：半导体ETF、科创50ETF，按平滑动量排名入选。</li><li>防御腿：10年国债ETF、银华日利(货币)，用于保留低相关缓冲。</li><li>观察池 3 个触发复审：半导体材料设备ETF、科创100ETF、恒生生物科技ETF(QDII)。</li><li>簇中性 breadth 仅作影子参考，当前相对原始 breadth 差 -15.5%。</li></ul>
+    </section>
+    
+
+    <section class="panel execution-risk-panel">
+      <div class="panel-title">
+        <h2>执行风险监控</h2>
+        <span>自动预警，不需要手动记录 · OK</span>
+      </div>
+      <div class="observation-note">
+        第一版只做自动执行风险预警：价格新鲜度、估算成交额、QDII 溢价源可用性、持仓一致性；不记录真实成交滑点。
+      </div>
+      <table class="holdings-table execution-risk-table">
+        <thead><tr><th>状态</th><th>对象</th><th>检查</th><th>说明</th></tr></thead>
+        <tbody>
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">511260</td>
+          <td>liquidity</td>
+          <td>近20日估算成交额 3744 万</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">511260</td>
+          <td>price_freshness</td>
+          <td>最新价格覆盖至 2026-07-03</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">511880</td>
+          <td>liquidity</td>
+          <td>近20日估算成交额 19235 万</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">511880</td>
+          <td>price_freshness</td>
+          <td>最新价格覆盖至 2026-07-03</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">512480</td>
+          <td>liquidity</td>
+          <td>近20日估算成交额 2009 万</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">512480</td>
+          <td>price_freshness</td>
+          <td>最新价格覆盖至 2026-07-03</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">588000</td>
+          <td>liquidity</td>
+          <td>近20日估算成交额 7067 万</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">588000</td>
+          <td>price_freshness</td>
+          <td>最新价格覆盖至 2026-07-03</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">OK</span></td>
+          <td style="font-family:monospace;font-weight:600">PORTFOLIO</td>
+          <td>holdings_consistency</td>
+          <td>current_holdings 与 tracker 最新持仓一致</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    
+
+    <section class="panel review-queue-panel">
+      <div class="panel-title">
+        <h2>观察池复审队列</h2>
+        <span>只触发研究，不参与调仓 · 3 个复审项</span>
+      </div>
+      <table class="holdings-table observation-table">
+        <thead>
+          <tr><th>状态</th><th>代码</th><th>复审原因</th><th>分组</th><th>影子排名</th><th>动量分</th><th>66日</th><th>对比</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159516</td>
+          <td><b>半导体材料设备ETF</b><span>影子排名 #2；同簇替代相关 0.970</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">0.3680</td>
+          <td style="text-align:right">+15.7%</td>
+          <td>512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">588190</td>
+          <td><b>科创100ETF</b><span>影子排名 #3；分差 +0.0776 vs 588000；同簇替代相关 0.970</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">0.3504</td>
+          <td style="text-align:right">+47.7%</td>
+          <td>588000</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159615</td>
+          <td><b>恒生生物科技ETF(QDII)</b><span>分差 +0.0939 vs 513050；同簇替代相关 0.970</span></td>
+          <td>独立维度</td>
+          <td style="text-align:right">26</td>
+          <td style="text-align:right">-0.0821</td>
+          <td style="text-align:right">-8.8%</td>
+          <td>513050</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">513290</td>
+          <td><b>纳指生物科技ETF(QDII)</b><span>独立观察维度</span></td>
+          <td>独立维度</td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">0.1349</td>
+          <td style="text-align:right">+17.3%</td>
+          <td>513100</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">562500</td>
+          <td><b>机器人ETF</b><span>同簇替代相关 0.970</span></td>
+          <td>主题观察</td>
+          <td style="text-align:right">12</td>
+          <td style="text-align:right">0.0365</td>
+          <td style="text-align:right">+15.1%</td>
+          <td>512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">512710</td>
+          <td><b>军工龙头ETF</b><span>同簇替代相关 0.970</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">25</td>
+          <td style="text-align:right">-0.0821</td>
+          <td style="text-align:right">-13.0%</td>
+          <td>512660</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    
+
+    <section class="panel etf-discovery-panel">
+      <div class="panel-title">
+        <h2>自动发现 ETF</h2>
+        <span>只生成候选，不自动进池 · 2026-07-05 20:57:23</span>
+      </div>
+      <div class="observation-note">
+        快池自动扫描全市场 ETF，排除生产池和观察池；候选只进入研究视图，需人工复审和 5-offset/WF 审计后才可能进入观察池或生产池。
+      </div>
+      <table class="holdings-table etf-discovery-table">
+        <thead>
+          <tr><th>状态</th><th>代码</th><th>名称/理由</th><th>分组</th><th>成交额</th><th>涨跌幅</th><th>对比</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">513310</td>
+          <td><b>中韩半导体ETF华泰柏瑞</b><span>半导体内部替代候选，需证明强于现有半导体腿</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">1331776 万</td>
+          <td style="text-align:right">+2.66%</td>
+          <td style="font-family:monospace">512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">513120</td>
+          <td><b>港股创新药ETF广发</b><span>医药生物链条，观察是否提供独立医药维度</span></td>
+          <td>独立维度</td>
+          <td style="text-align:right">816346 万</td>
+          <td style="text-align:right">+4.88%</td>
+          <td style="font-family:monospace">512170</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">513090</td>
+          <td><b>香港证券ETF易方达</b><span>海外资产候选，观察是否提供独立跨市场维度</span></td>
+          <td>海外观察</td>
+          <td style="text-align:right">748247 万</td>
+          <td style="text-align:right">+2.17%</td>
+          <td style="font-family:monospace">513100</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">588170</td>
+          <td><b>科创半导体ETF华夏</b><span>半导体内部替代候选，需证明强于现有半导体腿</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">650811 万</td>
+          <td style="text-align:right">-3.43%</td>
+          <td style="font-family:monospace">512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">588200</td>
+          <td><b>科创芯片ETF嘉实</b><span>半导体内部替代候选，需证明强于现有半导体腿</span></td>
+          <td>同簇替代</td>
+          <td style="text-align:right">648765 万</td>
+          <td style="text-align:right">-0.97%</td>
+          <td style="font-family:monospace">512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">515880</td>
+          <td><b>通信ETF国泰</b><span>AI/数字经济主题，观察是否强过半导体科技腿</span></td>
+          <td>主题观察</td>
+          <td style="text-align:right">569847 万</td>
+          <td style="text-align:right">+0.19%</td>
+          <td style="font-family:monospace">512480</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159570</td>
+          <td><b>港股通创新药ETF汇添富</b><span>医药生物链条，观察是否提供独立医药维度</span></td>
+          <td>独立维度</td>
+          <td style="text-align:right">422925 万</td>
+          <td style="text-align:right">+5.31%</td>
+          <td style="font-family:monospace">512170</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">159338</td>
+          <td><b>中证A500ETF国泰</b><span>未匹配明确主题，但成交额较高；仅进入自动发现观察</span></td>
+          <td>高流动性候选</td>
+          <td style="text-align:right">346283 万</td>
+          <td style="text-align:right">+0.54%</td>
+          <td style="font-family:monospace">-</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">513180</td>
+          <td><b>恒生科技ETF华夏</b><span>海外资产候选，观察是否提供独立跨市场维度</span></td>
+          <td>海外观察</td>
+          <td style="text-align:right">318016 万</td>
+          <td style="text-align:right">+1.06%</td>
+          <td style="font-family:monospace">513100</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">513130</td>
+          <td><b>恒生科技ETF华泰柏瑞</b><span>海外资产候选，观察是否提供独立跨市场维度</span></td>
+          <td>海外观察</td>
+          <td style="text-align:right">314570 万</td>
+          <td style="text-align:right">+1.08%</td>
+          <td style="font-family:monospace">513100</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">563360</td>
+          <td><b>A500ETF华泰柏瑞</b><span>未匹配明确主题，但成交额较高；仅进入自动发现观察</span></td>
+          <td>高流动性候选</td>
+          <td style="text-align:right">309796 万</td>
+          <td style="text-align:right">+0.66%</td>
+          <td style="font-family:monospace">-</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159530</td>
+          <td><b>机器人ETF易方达</b><span>机器人/智能制造主题，先和半导体科技腿比较</span></td>
+          <td>主题观察</td>
+          <td style="text-align:right">285780 万</td>
+          <td style="text-align:right">+8.69%</td>
+          <td style="font-family:monospace">512480</td>
+        </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:10px">扫描 1528 条，候选 20 条。</p>
+    </section>
+    
+
+    <section class="panel observation-panel">
+      <div class="panel-title">
+        <h2>观察池</h2>
+        <span>只观察，不参与调仓 · 10/10 有数据 · 3 个触发复审</span>
+      </div>
+      <div class="observation-note">
+        影子排名把观察 ETF 与生产风险 ETF 放在同一动量尺度比较；触发复审只代表值得跑 5-offset + WF 审计，不代表买入。
+      </div>
+      <table class="holdings-table observation-table">
+        <thead>
+          <tr><th>状态</th><th>代码</th><th>名称/理由</th><th>分组</th><th>影子排名</th><th>动量分</th><th>66日</th><th>对比</th><th>分差</th><th>相关</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159516</td>
+          <td>
+            <b>半导体材料设备ETF</b>
+            <span>半导体上游设备材料，对比半导体/科创腿</span>
+          </td>
+          <td>同簇替代</td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">0.3680</td>
+          <td style="text-align:right">+15.7%</td>
+          <td style="font-family:monospace">512480</td>
+          <td style="text-align:right">-0.0997</td>
+          <td style="text-align:right">0.527</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">588190</td>
+          <td>
+            <b>科创100ETF</b>
+            <span>科创中盘扩散，观察是否优于科创50</span>
+          </td>
+          <td>同簇替代</td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">0.3504</td>
+          <td style="text-align:right">+47.7%</td>
+          <td style="font-family:monospace">588000</td>
+          <td style="text-align:right">+0.0776</td>
+          <td style="text-align:right">0.892</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger review">复审</span></td>
+          <td style="font-family:monospace;font-weight:600">159615</td>
+          <td>
+            <b>恒生生物科技ETF(QDII)</b>
+            <span>港股生物科技，观察中概/医药交叉维度</span>
+          </td>
+          <td>独立维度</td>
+          <td style="text-align:right">26</td>
+          <td style="text-align:right">-0.0821</td>
+          <td style="text-align:right">-8.8%</td>
+          <td style="font-family:monospace">513050</td>
+          <td style="text-align:right">+0.0939</td>
+          <td style="text-align:right">0.589</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">513290</td>
+          <td>
+            <b>纳指生物科技ETF(QDII)</b>
+            <span>海外生物科技，区别于A股医疗和纳指宽基</span>
+          </td>
+          <td>独立维度</td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">0.1349</td>
+          <td style="text-align:right">+17.3%</td>
+          <td style="font-family:monospace">513100</td>
+          <td style="text-align:right">+0.0115</td>
+          <td style="text-align:right">0.527</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">562500</td>
+          <td>
+            <b>机器人ETF</b>
+            <span>机器人产业趋势，先观察是否强过半导体/科创</span>
+          </td>
+          <td>主题观察</td>
+          <td style="text-align:right">12</td>
+          <td style="text-align:right">0.0365</td>
+          <td style="text-align:right">+15.1%</td>
+          <td style="font-family:monospace">512480</td>
+          <td style="text-align:right">-0.4312</td>
+          <td style="text-align:right">0.594</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">512710</td>
+          <td>
+            <b>军工龙头ETF</b>
+            <span>军工内部替代，观察是否长期强于现有军工ETF</span>
+          </td>
+          <td>同簇替代</td>
+          <td style="text-align:right">25</td>
+          <td style="text-align:right">-0.0821</td>
+          <td style="text-align:right">-13.0%</td>
+          <td style="font-family:monospace">512660</td>
+          <td style="text-align:right">-0.0138</td>
+          <td style="text-align:right">0.964</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">560620</td>
+          <td>
+            <b>公用事业ETF</b>
+            <span>类防御权益，观察弱市和利率下行阶段</span>
+          </td>
+          <td>独立维度</td>
+          <td style="text-align:right">27</td>
+          <td style="text-align:right">-0.0845</td>
+          <td style="text-align:right">-8.5%</td>
+          <td style="font-family:monospace">510880</td>
+          <td style="text-align:right">-0.0462</td>
+          <td style="text-align:right">0.401</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">159227</td>
+          <td>
+            <b>航天航空ETF</b>
+            <span>军工细分升级，观察是否替代传统军工腿</span>
+          </td>
+          <td>主题观察</td>
+          <td style="text-align:right">28</td>
+          <td style="text-align:right">-0.1137</td>
+          <td style="text-align:right">-16.1%</td>
+          <td style="font-family:monospace">512660</td>
+          <td style="text-align:right">-0.0454</td>
+          <td style="text-align:right">0.956</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">159825</td>
+          <td>
+            <b>农业ETF</b>
+            <span>农业权益，观察商品/通胀链条的权益表达</span>
+          </td>
+          <td>独立维度</td>
+          <td style="text-align:right">30</td>
+          <td style="text-align:right">-0.1452</td>
+          <td style="text-align:right">-21.5%</td>
+          <td style="font-family:monospace">159985</td>
+          <td style="text-align:right">N/A</td>
+          <td style="text-align:right">0.243</td>
+        </tr>
+        
+        <tr>
+          <td><span class="obs-trigger watch">观察</span></td>
+          <td style="font-family:monospace;font-weight:600">159865</td>
+          <td>
+            <b>畜牧养殖ETF</b>
+            <span>猪周期/养殖周期，和科技成长低相关</span>
+          </td>
+          <td>独立维度</td>
+          <td style="text-align:right">31</td>
+          <td style="text-align:right">-0.1557</td>
+          <td style="text-align:right">-21.4%</td>
+          <td style="font-family:monospace">159985</td>
+          <td style="text-align:right">N/A</td>
+          <td style="text-align:right">0.172</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    
+
+    <section class="panel correlation-panel">
+      <div class="panel-title">
+        <h2>相关性气泡</h2>
+        <span>近3年日收益相关性 · 阈值 65% · 2 个同簇复审</span>
+      </div>
+      <div class="observation-note">
+        用相关性识别“新增维度”还是“同簇替代”：高相关观察标的只触发复审，不直接进入生产池。
+      </div>
+      <div class="corr-grid">
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>观察替代候选</b>
+              <span>复审同簇替代</span>
+            </div>
+            <strong>0.970</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>159915</b>
+              <span>创业板ETF</span>
+              <em>0.1663</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>510500</b>
+              <span>中证500ETF</span>
+              <em>0.0741</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512100</b>
+              <span>中证1000ETF</span>
+              <em>0.0535</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512170</b>
+              <span>医疗ETF</span>
+              <em>-0.0780</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512400</b>
+              <span>有色ETF</span>
+              <em>-0.0169</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512480</b>
+              <span>半导体ETF</span>
+              <em>0.4677</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512660</b>
+              <span>军工ETF</span>
+              <em>-0.0683</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512880</b>
+              <span>证券ETF</span>
+              <em>0.0027</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>588000</b>
+              <span>科创50ETF</span>
+              <em>0.2728</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>159227</b>
+              <span>航天航空ETF</span>
+              <em>-0.1137</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>159516</b>
+              <span>半导体材料设备ETF</span>
+              <em>0.3680</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>159615</b>
+              <span>恒生生物科技ETF(QDII)</span>
+              <em>-0.0821</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>512710</b>
+              <span>军工龙头ETF</span>
+              <em>-0.0821</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>562500</b>
+              <span>机器人ETF</span>
+              <em>0.0365</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>588190</b>
+              <span>科创100ETF</span>
+              <em>0.3504</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 0.625</span>
+            <span>簇内最强 512480 半导体ETF · 0.4677</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>观察替代候选</b>
+              <span>复审同簇替代</span>
+            </div>
+            <strong>0.948</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>159928</b>
+              <span>消费ETF</span>
+              <em>-0.1389</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512690</b>
+              <span>酒ETF</span>
+              <em>-0.1633</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>159825</b>
+              <span>农业ETF</span>
+              <em>-0.1452</em>
+            </div>
+            
+            <div class="corr-chip obs">
+              <b>159865</b>
+              <span>畜牧养殖ETF</span>
+              <em>-0.1557</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 0.769</span>
+            <span>簇内最强 159928 消费ETF · -0.1389</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>独立观察</b>
+              <span>观察新维度</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip obs">
+              <b>513290</b>
+              <span>纳指生物科技ETF(QDII)</span>
+              <em>0.1349</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 513290 纳指生物科技ETF(QDII) · 0.1349</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>独立观察</b>
+              <span>观察新维度</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip obs">
+              <b>560620</b>
+              <span>公用事业ETF</span>
+              <em>-0.0845</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 560620 公用事业ETF · -0.0845</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产冗余簇</b>
+              <span>监控拥挤</span>
+            </div>
+            <strong>0.890</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>513100</b>
+              <span>纳指ETF(QDII)</span>
+              <em>0.1234</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>513500</b>
+              <span>标普500ETF(QDII)</span>
+              <em>0.0447</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>513520</b>
+              <span>日经ETF</span>
+              <em>0.2291</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 0.731</span>
+            <span>簇内最强 513520 日经ETF · 0.2291</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产冗余簇</b>
+              <span>监控拥挤</span>
+            </div>
+            <strong>0.863</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>510880</b>
+              <span>红利ETF</span>
+              <em>-0.0383</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>512890</b>
+              <span>红利低波ETF</span>
+              <em>-0.0703</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 0.863</span>
+            <span>簇内最强 510880 红利ETF · -0.0383</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产冗余簇</b>
+              <span>监控拥挤</span>
+            </div>
+            <strong>0.857</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>513030</b>
+              <span>德国ETF(QDII)</span>
+              <em>-0.0123</em>
+            </div>
+            
+            <div class="corr-chip prod">
+              <b>513080</b>
+              <span>法国ETF(QDII)</span>
+              <em>0.0157</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 0.857</span>
+            <span>簇内最强 513080 法国ETF(QDII) · 0.0157</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>159985</b>
+              <span>豆粕ETF</span>
+              <em>-0.0467</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 159985 豆粕ETF · -0.0467</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>164824</b>
+              <span>印度基金LOF(QDII)</span>
+              <em>-0.0174</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 164824 印度基金LOF(QDII) · -0.0174</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>511260</b>
+              <span>10年国债ETF</span>
+              <em>0.0004</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 511260 10年国债ETF · 0.0004</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>511880</b>
+              <span>银华日利(货币)</span>
+              <em>0.0001</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 511880 银华日利(货币) · 0.0001</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>512800</b>
+              <span>银行ETF</span>
+              <em>-0.0185</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 512800 银行ETF · -0.0185</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>513050</b>
+              <span>中概互联ETF</span>
+              <em>-0.1760</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 513050 中概互联ETF · -0.1760</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>513350</b>
+              <span>美国油气ETF(QDII)</span>
+              <em>-0.0640</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 513350 美国油气ETF(QDII) · -0.0640</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>516160</b>
+              <span>新能源ETF</span>
+              <em>-0.0473</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 516160 新能源ETF · -0.0473</span>
+          </div>
+        </div>
+        
+        <div class="corr-bubble">
+          <div class="corr-bubble-head">
+            <div>
+              <b>生产单点</b>
+              <span>保持监控</span>
+            </div>
+            <strong>N/A</strong>
+          </div>
+          <div class="corr-chip-row">
+            <div class="corr-chip prod">
+              <b>518880</b>
+              <span>黄金ETF</span>
+              <em>-0.1030</em>
+            </div>
+            </div>
+          <div class="corr-meta">
+            <span>平均相关 N/A</span>
+            <span>簇内最强 518880 黄金ETF · -0.1030</span>
+          </div>
+        </div>
+        </div>
+    </section>
+    
+
+    <section class="panel cluster-breadth-panel">
+      <div class="panel-title">
+        <h2>簇中性 breadth</h2>
+        <span>影子指标，不参与调仓 · 2026-06-29</span>
+      </div>
+      <div class="cluster-breadth-grid">
+        <div class="cluster-breadth-card">
+          <span>当前 breadth66</span>
+          <b>52.2%</b>
+          <em>生产仍使用这个口径</em>
+        </div>
+        <div class="cluster-breadth-card">
+          <span>簇中性 breadth</span>
+          <b>36.7%</b>
+          <em>同簇先平均，再簇间等权</em>
+        </div>
+        <div class="cluster-breadth-card">
+          <span>风险仓位差</span>
+          <b>-15.5%</b>
+          <em>原始 52.2% / 簇中性 36.7%</em>
+        </div>
+        <div class="cluster-breadth-card">
+          <span>历史准入</span>
+          <b><span class="obs-trigger missing">观察</span></b>
+          <em>审计 未通过 · offset 1/5 · WF 1/4 · 均值dSR -0.004</em>
+        </div>
+      </div>
+      <div class="observation-note">
+        这个面板只回答“当前广度是否被同一相关簇重复计数”。只有 5-offset 和 WF 同时改善，才考虑进入生产。
+      </div>
+    </section>
+    
+<section class="health-strip"><div class="health-chip ok"><b>tracker</b><span>cycle_tracker.json 可读取</span></div><div class="health-chip ok"><b>current_holdings</b><span>current_holdings.json 可读取</span></div><div class="health-chip ok"><b>price_cache</b><span>价格缓存包含 77 个标的</span></div><div class="health-chip warn"><b>qdii_premium</b><span>暂未接入实时溢价数据源</span></div></section>
 
 <div class="grid">
 <div class="card">
@@ -262,7 +1286,51 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 </div>
 
 <!-- v4.7+ 广度信号面板 -->
-
+<div class="signal-panel">
+  <div class="signal-header">
+    <h3>📊 v4.7+ 持仓配置 · Breadth66 动态比例 + 波动率目标制</h3>
+    <span style="font-size:12px;color:var(--muted)">截至 2026-06-29 · breadth66=52.2% → 风险仓位 52% / 防御 48% (钳位 20%~90%) · 组合波动率 <span class="neg" style="font-weight:600">25.1%</span> ⚡触发! 缩至83% · 目标 21%</span>
+  </div>
+  <div class="signal-grid">
+    <div class="signal-main">
+      <div class="risk-label" style="color:var(--yellow)">52% <span style="font-size:16px;font-weight:400;color:var(--muted)">风险仓位</span></div>
+      <div class="risk-sub">breadth66（全市场 66 日正收益占比）→ 连续调节风险/防御仓位，钳位 20%~90% · 波动率超目标时按比例缩风险腿转防御</div>
+      <div class="signal-gauge">
+        <div class="signal-gauge-fill" style="width:52%;background:var(--yellow)"></div>
+        <span class="signal-gauge-def">48% 防御</span>
+        <span class="signal-gauge-risk">52% 风险</span>
+      </div>
+    </div>
+    <div class="signal-holdings">
+      <h4>⚡ 持仓 ETF <span class="signal-badge signal-badge-risk">风险</span></h4>
+      <div class="signal-item">
+    <span class="si-code">512480</span>
+    <span class="si-name">半导体ETF</span>
+    <span class="si-ret pos">+93.8%</span>
+    <span class="si-w">26%</span>
+  </div><div class="signal-item">
+    <span class="si-code">588000</span>
+    <span class="si-name">科创50ETF</span>
+    <span class="si-ret pos">+62.0%</span>
+    <span class="si-w">26%</span>
+  </div>
+    </div>
+    <div class="signal-holdings">
+      <h4>🛡️ 持仓 ETF <span class="signal-badge signal-badge-def">防御</span></h4>
+      <div class="signal-item">
+    <span class="si-code">511260</span>
+    <span class="si-name">10年国债ETF</span>
+    <span class="si-ret pos">+0.0%</span>
+    <span class="si-w">24%</span>
+  </div><div class="signal-item">
+    <span class="si-code">511880</span>
+    <span class="si-name">银华日利(货币)</span>
+    <span class="si-ret pos">+0.3%</span>
+    <span class="si-w">24%</span>
+  </div>
+    </div>
+  </div>
+</div>
 
 <!-- Yearly + ETF Contribution -->
 <div class="grid-2">
@@ -799,7 +1867,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 </div>
 
 <footer>
-  v4.7+ ETF Momentum Rotation · K=4比例配置双周 · bread66+波动率目标制 · 生成于 2026-07-03 10:59:28 · 28 只 ETF
+  v4.7+ ETF Momentum Rotation · K=4比例配置双周 · bread66+波动率目标制 · 生成于 2026-07-05 20:58:46 · 28 只 ETF
 </footer>
 </div>
 

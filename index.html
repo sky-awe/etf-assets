@@ -153,21 +153,21 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 <header>
   <div>
     <h1>v5.3 <span>ETF 动量轮动</span> — 实盘仪表盘</h1>
-    <div class="subtitle">28 只 ETF · 生成于 2026-07-17 12:51:25</div>
+    <div class="subtitle">28 只 ETF · 生成于 2026-07-18 15:28:23</div>
   </div>
   <div><span class="badge badge-paper">PAPER TRADING</span></div>
 </header>
 
 
-    <section class="action-header action-neutral">
+    <section class="action-header action-warning">
       <div>
         <div class="eyebrow">自动化状态</div>
-        <h1>等待调仓</h1>
-        <p>当前不是调仓日，继续持有现有组合。</p>
+        <h1>待成交确认</h1>
+        <p>模型目标已锁定，但尚无可审计成交证据；不能把目标权重视为券商实际持仓。</p>
       </div>
       <div class="action-meta">
         <div><span>最新信号</span><b>2026-07-15</b></div>
-        <div><span>下一步</span><b>等待下一次双周调仓</b></div>
+        <div><span>下一步</span><b>成交后用 tools/record_execution.py 回填证据并完成账户对账</b></div>
         <div><span>健康状态</span><b>WARN</b></div>
       </div>
     </section>
@@ -175,7 +175,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 
     <section class="panel portfolio-panel">
       <div class="panel-title">
-        <h2>当前持仓</h2>
+        <h2>模型目标持仓</h2>
         <span>进攻 34.8% / 防御 65.2%</span>
       </div>
       <div class="split-bar">
@@ -183,10 +183,10 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
         <div class="defense" style="width:65.22%"></div>
       </div>
       <div class="metrics-row">
-        <div><span>breadth66</span><b>N/A</b></div>
-        <div><span>组合波动率</span><b>N/A%</b></div>
-        <div><span>波动目标</span><b>N/A%</b></div>
-        <div><span>压缩风险腿</span><b>否</b></div>
+        <div><span>breadth66</span><b>0.348</b></div>
+        <div><span>抑制前 → 抑制后波动率</span><b>13.3%（仅抑制后）</b></div>
+        <div><span>波动目标</span><b>21.0%</b></div>
+        <div><span>压缩风险腿</span><b>未知</b></div>
       </div>
       <table class="holdings-table">
         <thead><tr><th>代码</th><th>名称</th><th>角色</th><th>类别</th><th>权重</th><th>平滑分</th><th>66日</th></tr></thead>
@@ -218,6 +218,12 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
           <h3>10年国债ETF</h3>
           <p>511260 入选：平滑分 0.0080，66日收益 +1.2%。</p>
         </div>
+        
+        <div class="reason-card">
+          <span>仓位</span>
+          <h3>进攻/防御比例</h3>
+          <p>breadth66=0.348，组合波动率=13.3%，风险腿状态未知被波动率目标压缩。</p>
+        </div>
         </section>
 
     <section class="panel rebalance-explain-panel">
@@ -225,7 +231,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
         <h2>调仓解释摘要</h2><span>自动生成，只解释当前信号</span>
       </div>
       <div class="explain-headline">当前 35% 进攻 / 65% 防御</div>
-      <ul class="explain-list"><li>进攻腿：日经ETF，按平滑动量排名入选。</li><li>防御腿：10年国债ETF，用于保留低相关缓冲。</li><li>观察池 2 个触发复审：半导体材料设备ETF、恒生生物科技ETF(QDII)、科创100ETF。</li><li>簇中性 breadth 仅作影子参考，当前相对原始 breadth 差 -16.0%。</li></ul>
+      <ul class="explain-list"><li>breadth66=0.348，组合波动率=13.3%，风险腿状态未知被波动率目标压缩。</li><li>进攻腿：日经ETF，按平滑动量排名入选。</li><li>防御腿：10年国债ETF，用于保留低相关缓冲。</li><li>观察池 2 个触发复审：半导体材料设备ETF、恒生生物科技ETF(QDII)、科创100ETF。</li><li>簇中性 breadth 仅作影子参考，当前相对原始 breadth 差 -16.0%。</li></ul>
     </section>
     
 
@@ -1157,33 +1163,33 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
       </div>
     </section>
     
-<section class="health-strip"><div class="health-chip ok"><b>tracker</b><span>cycle_tracker.json 可读取</span></div><div class="health-chip ok"><b>current_holdings</b><span>current_holdings.json 可读取</span></div><div class="health-chip ok"><b>price_cache</b><span>价格缓存包含 39 个标的</span></div><div class="health-chip warn"><b>qdii_premium</b><span>暂未接入实时溢价数据源</span></div></section>
+<section class="health-strip"><div class="health-chip ok"><b>tracker</b><span>cycle_tracker.json 可读取</span></div><div class="health-chip warn"><b>execution_evidence</b><span>最新 live 信号只有模型目标，尚无 actual_fills/broker_statement 成交证据</span></div><div class="health-chip ok"><b>current_holdings</b><span>current_holdings.json 可读取</span></div><div class="health-chip ok"><b>price_cache</b><span>价格缓存包含 39 个标的</span></div><div class="health-chip warn"><b>qdii_premium</b><span>暂未接入实时溢价数据源</span></div></section>
 
 <div class="grid">
 <div class="card">
   <div class="label">累计收益</div>
-  <div class="value pos">+2535.6%</div>
+  <div class="value pos">+2634.1%</div>
   <div class="delta">382 期 · 最近12期 +36.1%</div>
 </div><div class="card">
   <div class="label">年化收益</div>
-  <div class="value pos">+22.82%</div>
+  <div class="value pos">+23.10%</div>
   <div class="delta">年化波动率 19%</div>
 </div><div class="card">
   <div class="label">夏普比率</div>
-  <div class="value pos">1.170</div>
-  <div class="delta">Sortino 1.936 · Calmar 0.754</div>
+  <div class="value pos">1.184</div>
+  <div class="delta">Sortino 1.949 · Calmar 0.763</div>
 </div><div class="card">
   <div class="label">最大回撤</div>
   <div class="value neg">-30.3%</div>
-  <div class="delta">Sharpe稳定性 (12M σ) 1.013</div>
+  <div class="delta">Sharpe稳定性 (12M σ) 1.027</div>
 </div><div class="card">
   <div class="label">2022+ 🚀</div>
-  <div class="value pos">年化 +30.8%</div>
-  <div class="delta">Sharpe 1.726 · 回撤 -6.8% · 胜率 64% · 107期</div>
+  <div class="value pos">年化 +31.9%</div>
+  <div class="delta">Sharpe 1.787 · 回撤 -6.8% · 胜率 65% · 107期</div>
 </div><div class="card">
   <div class="label">期胜率</div>
   <div class="value pos">61%</div>
-  <div class="delta">233 期盈利</div>
+  <div class="delta">234 期盈利</div>
 </div><div class="card">
   <div class="label">期均收益</div>
   <div class="value pos">+0.94%</div>
@@ -1205,7 +1211,41 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 </div>
 
 <!-- v4.7+ 广度信号面板 -->
-
+<div class="signal-panel">
+  <div class="signal-header">
+    <h3>📊 v5.3 持仓配置 · 层级Top-6风险+1防御 + Breadth66 + 波动率目标制</h3>
+    <span style="font-size:12px;color:var(--muted)">截至 2026-07-15 · breadth66=34.8% → 风险仓位 35% / 防御 65% (钳位 20%~90%) · 组合波动率 <span class="pos" style="font-weight:600">13.3%</span> · 目标 21%</span>
+  </div>
+  <div class="signal-grid">
+    <div class="signal-main">
+      <div class="risk-label" style="color:var(--red)">35% <span style="font-size:16px;font-weight:400;color:var(--muted)">风险仓位</span></div>
+      <div class="risk-sub">breadth66（全市场 66 日正收益占比）→ 连续调节风险/防御仓位，钳位 20%~90% · 波动率超目标时按比例缩风险腿转防御</div>
+      <div class="signal-gauge">
+        <div class="signal-gauge-fill" style="width:35%;background:var(--red)"></div>
+        <span class="signal-gauge-def">65% 防御</span>
+        <span class="signal-gauge-risk">35% 风险</span>
+      </div>
+    </div>
+    <div class="signal-holdings">
+      <h4>⚡ 持仓 ETF <span class="signal-badge signal-badge-risk">风险</span></h4>
+      <div class="signal-item">
+    <span class="si-code">513520</span>
+    <span class="si-name">日经ETF</span>
+    <span class="si-ret pos">+19.7%</span>
+    <span class="si-w">35%</span>
+  </div>
+    </div>
+    <div class="signal-holdings">
+      <h4>🛡️ 持仓 ETF <span class="signal-badge signal-badge-def">防御</span></h4>
+      <div class="signal-item">
+    <span class="si-code">511260</span>
+    <span class="si-name">10年国债ETF</span>
+    <span class="si-ret pos">+1.2%</span>
+    <span class="si-w">65%</span>
+  </div>
+    </div>
+  </div>
+</div>
 
 <!-- Yearly + ETF Contribution -->
 <div class="grid-2">
@@ -1219,7 +1259,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <td><span class="tag tag-neutral">中波</span></td>
 </tr><tr>
   <td style="font-weight:600">2025</td>
-  <td class="pos" style="font-weight:700">+50.1%</td>
+  <td class="pos" style="font-weight:700">+55.8%</td>
   <td style="color:var(--muted)">24</td>
   <td><span class="tag tag-neutral">中波</span></td>
 </tr><tr>
@@ -1239,7 +1279,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <td><span class="tag tag-bull">低波</span></td>
 </tr><tr>
   <td style="font-weight:600">2021</td>
-  <td class="neg" style="font-weight:700">-1.1%</td>
+  <td class="neg" style="font-weight:700">-1.2%</td>
   <td style="color:var(--muted)">24</td>
   <td><span class="tag tag-neutral">中波</span></td>
 </tr><tr>
@@ -1384,15 +1424,15 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <td style="font-family:monospace;font-size:12px">518880</td>
   <td>黄金ETF</td>
   <td style="text-align:right">141次</td>
-  <td style="text-align:right;font-weight:700" class="pos">+0.51%</td>
+  <td style="text-align:right;font-weight:700" class="pos">+0.52%</td>
   <td style="text-align:right;color:var(--muted)">65%</td>
   <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--green)"></div></div></td>
 </tr><tr>
   <td style="font-family:monospace;font-size:12px">513030</td>
   <td>德国ETF(QDII)</td>
-  <td style="text-align:right">26次</td>
-  <td style="text-align:right;font-weight:700" class="pos">+0.49%</td>
-  <td style="text-align:right;color:var(--muted)">58%</td>
+  <td style="text-align:right">28次</td>
+  <td style="text-align:right;font-weight:700" class="pos">+0.47%</td>
+  <td style="text-align:right;color:var(--muted)">57%</td>
   <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--green)"></div></div></td>
 </tr><tr>
   <td style="font-family:monospace;font-size:12px">164824</td>
@@ -1451,6 +1491,13 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <td style="text-align:right;color:var(--muted)">66%</td>
   <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--green)"></div></div></td>
 </tr><tr>
+  <td style="font-family:monospace;font-size:12px">513350</td>
+  <td>美国油气ETF(QDII)</td>
+  <td style="text-align:right">5次</td>
+  <td style="text-align:right;font-weight:700" class="neg">-0.04%</td>
+  <td style="text-align:right;color:var(--muted)">40%</td>
+  <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--red)"></div></div></td>
+</tr><tr>
   <td style="font-family:monospace;font-size:12px">512890</td>
   <td>红利低波ETF</td>
   <td style="text-align:right">3次</td>
@@ -1463,13 +1510,6 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <td style="text-align:right">10次</td>
   <td style="text-align:right;font-weight:700" class="neg">-0.13%</td>
   <td style="text-align:right;color:var(--muted)">60%</td>
-  <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--red)"></div></div></td>
-</tr><tr>
-  <td style="font-family:monospace;font-size:12px">513350</td>
-  <td>美国油气ETF(QDII)</td>
-  <td style="text-align:right">7次</td>
-  <td style="text-align:right;font-weight:700" class="neg">-0.22%</td>
-  <td style="text-align:right;color:var(--muted)">29%</td>
   <td><div class="bar-wrap"><div class="bar-fill" style="width:2px;background:var(--red)"></div></div></td>
 </tr><tr>
   <td style="font-family:monospace;font-size:12px">512660</td>
@@ -1514,230 +1554,230 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
     <tr>
   <td>2026-07-15</td>
   <td><span style="color:var(--muted)">—</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">26.3561</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">27.3410</td>
   <td><span class="tag tag-bear">高波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">日经ETF, 10年国债ETF</td>
 </tr><tr>
   <td>2026-06-29</td>
   <td><span style="color:var(--muted)">—</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">26.3561</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">27.3410</td>
   <td><span class="tag tag-bear">高波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">半导体ETF, 科创50ETF, 10年国债ETF, 银华日利(货币)</td>
 </tr><tr>
   <td>2026-06-15</td>
   <td><span style="color:var(--green);font-weight:700">+13.15%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">26.3561</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">27.3410</td>
   <td><span class="tag tag-bear">高波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">半导体ETF, 10年国债ETF</td>
 </tr><tr>
   <td>2026-05-28</td>
   <td><span style="color:var(--red);font-weight:700">-3.14%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.2936</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.1640</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">半导体ETF, 豆粕ETF</td>
 </tr><tr>
   <td>2026-05-15</td>
   <td><span style="color:var(--green);font-weight:700">+6.68%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.0493</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.9480</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">半导体ETF, 豆粕ETF</td>
 </tr><tr>
   <td>2026-04-29</td>
   <td><span style="color:var(--red);font-weight:700">-3.52%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">22.5426</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.3849</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 豆粕ETF</td>
 </tr><tr>
   <td>2026-04-15</td>
   <td><span style="color:var(--green);font-weight:700">+2.56%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.3641</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.2372</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 豆粕ETF</td>
 </tr><tr>
   <td>2026-03-30</td>
   <td><span style="color:var(--red);font-weight:700">-1.92%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">22.7813</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.6326</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2026-03-13</td>
   <td><span style="color:var(--red);font-weight:700">-0.32%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.2262</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.0941</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2026-02-26</td>
   <td><span style="color:var(--green);font-weight:700">+1.94%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.3019</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.1727</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2026-02-13</td>
   <td><span style="color:var(--green);font-weight:700">+0.57%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">22.8593</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.7135</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2026-01-29</td>
   <td><span style="color:var(--red);font-weight:700">-5.99%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">22.7301</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">23.5795</td>
   <td><span class="tag tag-bull">低波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2026-01-15</td>
   <td><span style="color:var(--green);font-weight:700">+13.47%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">24.1773</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">25.0807</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-12-30</td>
   <td><span style="color:var(--green);font-weight:700">+10.01%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">21.3080</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">22.1042</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-12-15</td>
   <td><span style="color:var(--green);font-weight:700">+2.70%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.3691</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">20.0928</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">新能源ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-11-27</td>
   <td><span style="color:var(--green);font-weight:700">+0.96%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.8598</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.5646</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">新能源ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-11-14</td>
   <td><span style="color:var(--red);font-weight:700">-1.25%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.6798</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.3779</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-10-30</td>
   <td><span style="color:var(--green);font-weight:700">+0.03%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.9166</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.6234</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-10-15</td>
   <td><span style="color:var(--green);font-weight:700">+2.41%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.9118</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.6185</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">新能源ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-09-29</td>
   <td><span style="color:var(--red);font-weight:700">-1.86%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.4674</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.1575</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">创业板ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-09-15</td>
   <td><span style="color:var(--green);font-weight:700">+5.39%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.8182</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">19.5214</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">创业板ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-08-28</td>
   <td><span style="color:var(--green);font-weight:700">+8.24%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">17.8552</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">18.5224</td>
   <td><span class="tag tag-bull">低波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-08-15</td>
   <td><span style="color:var(--green);font-weight:700">+5.87%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">16.4957</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">17.1121</td>
   <td><span class="tag tag-bull">低波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-07-30</td>
   <td><span style="color:var(--green);font-weight:700">+7.35%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">15.5805</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">16.1627</td>
   <td><span class="tag tag-bull">低波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">有色ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-07-15</td>
   <td><span style="color:var(--green);font-weight:700">+0.70%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.5143</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">15.0567</td>
   <td><span class="tag tag-bull">低波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-06-27</td>
   <td><span style="color:var(--red);font-weight:700">-0.06%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.4138</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.9524</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-06-13</td>
   <td><span style="color:var(--red);font-weight:700">-1.39%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.4225</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.9615</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-05-29</td>
   <td><span style="color:var(--green);font-weight:700">+1.10%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.6260</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">15.1726</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-05-15</td>
   <td><span style="color:var(--green);font-weight:700">+2.50%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.4670</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">15.0076</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-04-29</td>
   <td><span style="color:var(--red);font-weight:700">-1.34%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.1135</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.6409</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-04-15</td>
   <td><span style="color:var(--green);font-weight:700">+2.63%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.3047</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.8392</td>
   <td><span class="tag tag-bear">高波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">中概互联ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-03-28</td>
   <td><span style="color:var(--red);font-weight:700">-1.24%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">13.9376</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.4584</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">中概互联ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-03-14</td>
   <td><span style="color:var(--red);font-weight:700">-1.30%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.1126</td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.6400</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">中概互联ETF, 黄金ETF</td>
 </tr><tr>
   <td>2025-02-27</td>
-  <td><span style="color:var(--green);font-weight:700">+3.32%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.2983</td>
+  <td><span style="color:var(--green);font-weight:700">+3.33%</span></td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.8326</td>
   <td><span class="tag tag-neutral">中波</span></td>
   <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-02-14</td>
-  <td><span style="color:var(--red);font-weight:700">-2.44%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">13.8386</td>
+  <td><span style="color:var(--green);font-weight:700">+1.12%</span></td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.3546</td>
   <td><span class="tag tag-neutral">中波</span></td>
-  <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 黄金ETF</td>
+  <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr><tr>
   <td>2025-01-24</td>
-  <td><span style="color:var(--red);font-weight:700">-0.93%</span></td>
-  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.1843</td>
+  <td><span style="color:var(--red);font-weight:700">-0.79%</span></td>
+  <td style="font-family:monospace;font-size:12px;color:var(--muted)">14.1951</td>
   <td><span class="tag tag-bear">高波</span></td>
-  <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">美国油气ETF(QDII), 黄金ETF</td>
+  <td style="font-size:11px;color:var(--muted);max-width:260px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">德国ETF(QDII), 黄金ETF</td>
 </tr>
   </table></div>
 </div>
 
 <footer>
-  v5.3 ETF Momentum Rotation · 层级Top-6风险+1防御双周 · 60/25/15动量 · breadth66+波动率目标制 · 生成于 2026-07-17 12:51:25 · 28 只 ETF
+  v5.3 ETF Momentum Rotation · 层级Top-6风险+1防御双周 · 60/25/15动量 · breadth66+波动率目标制 · 生成于 2026-07-18 15:28:23 · 28 只 ETF
 </footer>
 </div>
 
 <script>
-var D = {"dates": ["2010-07-29", "2010-08-13", "2010-08-30", "2010-09-15", "2010-09-29", "2010-10-15", "2010-10-28", "2010-11-15", "2010-11-29", "2010-12-15", "2010-12-30", "2011-01-14", "2011-01-28", "2011-02-15", "2011-02-25", "2011-03-15", "2011-03-30", "2011-04-15", "2011-04-28", "2011-05-13", "2011-05-30", "2011-06-15", "2011-06-29", "2011-07-15", "2011-07-28", "2011-08-15", "2011-08-30", "2011-09-15", "2011-09-29", "2011-10-14", "2011-10-28", "2011-11-15", "2011-11-29", "2011-12-15", "2011-12-29", "2012-01-13", "2012-01-30", "2012-02-15", "2012-02-28", "2012-03-15", "2012-03-29", "2012-04-13", "2012-04-26", "2012-05-15", "2012-05-30", "2012-06-15", "2012-06-28", "2012-07-13", "2012-07-30", "2012-08-15", "2012-08-30", "2012-09-14", "2012-09-27", "2012-10-15", "2012-10-30", "2012-11-15", "2012-11-29", "2012-12-14", "2012-12-28", "2013-01-15", "2013-01-30", "2013-02-08", "2013-02-27", "2013-03-15", "2013-03-28", "2013-04-15", "2013-04-25", "2013-05-15", "2013-05-30", "2013-06-14", "2013-06-27", "2013-07-15", "2013-07-30", "2013-08-15", "2013-08-29", "2013-09-13", "2013-09-27", "2013-10-15", "2013-10-30", "2013-11-15", "2013-11-28", "2013-12-13", "2013-12-30", "2014-01-15", "2014-01-29", "2014-02-14", "2014-02-27", "2014-03-14", "2014-03-28", "2014-04-15", "2014-04-29", "2014-05-15", "2014-05-29", "2014-06-13", "2014-06-27", "2014-07-15", "2014-07-30", "2014-08-15", "2014-08-28", "2014-09-15", "2014-09-29", "2014-10-15", "2014-10-30", "2014-11-14", "2014-11-27", "2014-12-15", "2014-12-30", "2015-01-15", "2015-01-29", "2015-02-13", "2015-02-26", "2015-03-13", "2015-03-30", "2015-04-15", "2015-04-29", "2015-05-15", "2015-05-28", "2015-06-15", "2015-06-29", "2015-07-15", "2015-07-30", "2015-08-14", "2015-08-28", "2015-09-15", "2015-09-29", "2015-10-15", "2015-10-29", "2015-11-13", "2015-11-27", "2015-12-15", "2015-12-30", "2016-01-15", "2016-01-28", "2016-02-15", "2016-02-26", "2016-03-15", "2016-03-30", "2016-04-15", "2016-04-28", "2016-05-13", "2016-05-30", "2016-06-15", "2016-06-29", "2016-07-15", "2016-07-28", "2016-08-15", "2016-08-30", "2016-09-14", "2016-09-29", "2016-10-14", "2016-10-28", "2016-11-15", "2016-11-29", "2016-12-15", "2016-12-29", "2017-01-13", "2017-01-25", "2017-02-15", "2017-02-27", "2017-03-15", "2017-03-30", "2017-04-14", "2017-04-27", "2017-05-15", "2017-05-26", "2017-06-15", "2017-06-29", "2017-07-14", "2017-07-28", "2017-08-15", "2017-08-30", "2017-09-15", "2017-09-28", "2017-10-13", "2017-10-30", "2017-11-15", "2017-11-29", "2017-12-15", "2017-12-28", "2018-01-15", "2018-01-30", "2018-02-14", "2018-02-27", "2018-03-15", "2018-03-29", "2018-04-13", "2018-04-26", "2018-05-15", "2018-05-30", "2018-06-15", "2018-06-28", "2018-07-13", "2018-07-30", "2018-08-15", "2018-08-30", "2018-09-14", "2018-09-27", "2018-10-15", "2018-10-30", "2018-11-15", "2018-11-29", "2018-12-14", "2018-12-27", "2019-01-15", "2019-01-30", "2019-02-15", "2019-02-27", "2019-03-15", "2019-03-28", "2019-04-15", "2019-04-29", "2019-05-15", "2019-05-30", "2019-06-14", "2019-06-27", "2019-07-15", "2019-07-30", "2019-08-15", "2019-08-29", "2019-09-12", "2019-09-27", "2019-10-15", "2019-10-30", "2019-11-15", "2019-11-28", "2019-12-13", "2019-12-30", "2020-01-15", "2020-01-22", "2020-02-14", "2020-02-27", "2020-03-13", "2020-03-30", "2020-04-15", "2020-04-29", "2020-05-15", "2020-05-28", "2020-06-15", "2020-06-29", "2020-07-15", "2020-07-30", "2020-08-14", "2020-08-28", "2020-09-15", "2020-09-29", "2020-10-15", "2020-10-29", "2020-11-13", "2020-11-27", "2020-12-15", "2020-12-30", "2021-01-15", "2021-01-28", "2021-02-10", "2021-02-25", "2021-03-15", "2021-03-30", "2021-04-15", "2021-04-29", "2021-05-14", "2021-05-28", "2021-06-15", "2021-06-29", "2021-07-15", "2021-07-29", "2021-08-13", "2021-08-30", "2021-09-15", "2021-09-29", "2021-10-15", "2021-10-28", "2021-11-15", "2021-11-29", "2021-12-15", "2021-12-30", "2022-01-14", "2022-01-27", "2022-02-15", "2022-02-25", "2022-03-15", "2022-03-30", "2022-04-15", "2022-04-28", "2022-05-13", "2022-05-30", "2022-06-15", "2022-06-29", "2022-07-15", "2022-07-28", "2022-08-15", "2022-08-30", "2022-09-15", "2022-09-29", "2022-10-14", "2022-10-28", "2022-11-15", "2022-11-29", "2022-12-15", "2022-12-29", "2023-01-13", "2023-01-30", "2023-02-15", "2023-02-27", "2023-03-15", "2023-03-30", "2023-04-14", "2023-04-27", "2023-05-15", "2023-05-30", "2023-06-15", "2023-06-29", "2023-07-14", "2023-07-28", "2023-08-15", "2023-08-30", "2023-09-15", "2023-09-27", "2023-10-13", "2023-10-30", "2023-11-15", "2023-11-29", "2023-12-15", "2023-12-28", "2024-01-15", "2024-01-30", "2024-02-08", "2024-02-28", "2024-03-15", "2024-03-28", "2024-04-15", "2024-04-29", "2024-05-15", "2024-05-30", "2024-06-14", "2024-06-27", "2024-07-15", "2024-07-30", "2024-08-15", "2024-08-29", "2024-09-13", "2024-09-27", "2024-10-15", "2024-10-30", "2024-11-15", "2024-11-28", "2024-12-13", "2024-12-30", "2025-01-15", "2025-01-24", "2025-02-14", "2025-02-27", "2025-03-14", "2025-03-28", "2025-04-15", "2025-04-29", "2025-05-15", "2025-05-29", "2025-06-13", "2025-06-27", "2025-07-15", "2025-07-30", "2025-08-15", "2025-08-28", "2025-09-15", "2025-09-29", "2025-10-15", "2025-10-30", "2025-11-14", "2025-11-27", "2025-12-15", "2025-12-30", "2026-01-15", "2026-01-29", "2026-02-13", "2026-02-26", "2026-03-13", "2026-03-30", "2026-04-15", "2026-04-29", "2026-05-15", "2026-05-28", "2026-06-15", "2026-06-29", "2026-07-15"], "returns": [-0.022343, 0.0, -0.009767, -0.023485, 0.16835, 0.004159, -0.023573, -0.05972, 0.013514, -0.04, 0.019444, -0.015441, 0.049354, -0.003956, 0.001765, 0.026432, 0.032618, -0.042394, -0.013021, -0.046614, -0.013376, 0.017298, 0.02068, -0.049077, -0.02178, -0.008712, -0.023438, -0.034, 0.023292, 0.018229, 0.012652, -0.04098, -0.073476, -0.008436, 0.043108, 0.025014, 0.014324, 0.040795, -0.038693, -0.03816, 0.045652, 0.017672, -0.015832, 0.002076, -0.02434, -0.043524, -0.002775, -0.053545, 0.059334, -0.038251, 0.059659, -0.092493, 0.044313, -0.020869, -0.009417, -0.019608, 0.100606, 0.053249, 0.042781, 0.068205, 0.017763, -0.062736, -0.018621, 0.019927, -0.043931, 0.078597, 0.133408, 0.054402, 0.006567, -0.065238, 0.13659, -0.025439, 0.027903, 0.051664, 0.024979, 0.067425, 0.038813, -0.089377, 0.006436, 0.03249, -0.031361, 0.031384, 0.008029, -0.005286, 0.016614, -0.043524, 0.02294, -0.031892, -0.020307, 0.017278, 0.006309, 0.006178, 0.003541, 0.007793, 0.010105, 0.00102, 0.005449, -0.019689, 0.093649, 0.01504, 0.013766, 0.00484, -0.014672, 0.060948, 0.117381, 0.059019, 0.032651, -0.024773, -0.030292, 0.016039, 0.052948, 0.056837, 0.033973, 0.108244, 0.067207, 0.044532, 0.023187, -0.131423, -0.054115, 0.028152, 0.002986, -0.013213, -0.001422, -0.009844, 0.013546, 0.017882, -0.039522, -0.002547, 0.00223, 0.009092, -0.086792, 0.000551, 0.060248, 0.024534, -0.001742, -0.005904, 0.008543, 0.021708, 0.004508, 0.03305, 0.014741, 0.006723, 0.046843, 0.015435, 0.016584, -0.009027, 0.014057, 0.009931, 0.045521, -0.008374, -0.002677, 0.085824, 0.06909, -0.074266, -0.063425, 0.003779, -0.003739, -0.000107, 0.013024, -0.007674, -0.011509, 0.043463, 0.040519, -0.008291, -0.004092, -0.001658, 0.011278, -0.012655, -0.001532, 0.003975, 0.014031, -0.001204, 0.036179, -0.026782, 0.018645, -0.043879, 0.010376, -0.006505, 0.021364, -0.003194, -0.021714, 0.001051, 0.012832, -0.035154, 0.001551, -0.002774, -0.016822, 0.0149, 0.024174, -0.001237, 0.018245, 0.001904, 0.007772, -0.001852, 0.002704, 0.004059, -0.03085, -0.002523, -0.00542, 0.00741, -0.007013, -0.007646, 0.000681, -0.009758, 0.047626, 0.143086, -0.005277, -0.01573, 0.019146, 0.017653, 0.023469, -0.018411, 0.005268, 0.023581, -0.006136, 0.009173, 0.044086, 0.025165, -0.023918, -0.013478, 0.015345, 0.011491, 0.00156, 0.003675, 0.01097, 0.018937, 0.095473, 0.063491, 0.060443, 0.025123, -0.061216, -0.024214, 0.031872, 0.013686, 0.045911, -0.009485, 0.003463, 0.04625, 0.084301, 0.008021, -0.006962, 0.093729, -0.04311, -0.031412, 0.065729, 0.027081, 0.035262, 0.023257, 0.038852, 0.097124, 0.028747, -0.021899, 0.093327, -0.119827, -0.089156, 0.007036, 0.000919, 0.022818, -0.002371, 0.008073, -0.01757, 0.066163, 0.003684, 0.08995, -0.055192, 0.038683, -0.010785, -0.033363, 0.024599, 0.026664, 0.012766, 0.036518, -0.023797, 0.015604, -0.054997, 0.008737, 0.083864, 0.030899, 0.041563, 0.018745, -0.022517, 0.034923, 0.00636, 0.014089, -0.022694, -0.031456, 0.023266, -0.006094, 0.012616, -0.038141, 0.041477, -0.001136, 0.008316, 0.005266, 0.02982, 0.02528, 0.014963, 0.026357, 0.028229, 0.014991, 0.016675, 0.004954, -0.029588, 0.000963, 0.059331, -0.007568, 0.003792, -0.017215, 0.035802, -0.01297, 0.015925, 0.026669, 0.003286, 0.053628, -0.021775, -0.01679, -0.02019, 0.001381, 0.04593, -0.047953, 0.013469, -0.00468, 0.026003, 0.001749, -0.021992, 0.036739, -0.001017, 0.029666, 0.002671, -0.024986, 0.045341, -0.030254, -0.007823, 0.005425, 0.043307, -0.044813, 0.0131, 0.006271, 0.01019, -0.002575, -0.010462, 0.053505, 0.002325, 0.002607, 0.013871, -0.000505, 0.004231, 0.008597, -0.009292, -0.024369, 0.033216, -0.012983, -0.012406, 0.026341, -0.013364, 0.025043, 0.010993, -0.013911, -0.000609, 0.006976, 0.073459, 0.058739, 0.082413, 0.053935, -0.018643, 0.024064, 0.000254, -0.012515, 0.009637, 0.027, 0.100103, 0.134659, -0.059856, 0.005682, 0.019365, -0.003249, -0.019157, 0.025585, -0.035164, 0.06684, -0.031424, 0.131477, 0.0, 0.0], "navs": [0.977657, 0.977657, 0.968108, 0.945372, 1.104526, 1.109119, 1.082974, 1.018299, 1.03206, 0.990778, 1.010042, 0.994446, 1.043526, 1.039398, 1.041233, 1.068754, 1.103615, 1.056828, 1.043067, 0.994446, 0.981144, 0.998116, 1.018757, 0.96876, 0.94766, 0.939404, 0.917386, 0.886195, 0.906836, 0.923367, 0.935049, 0.896731, 0.830843, 0.823834, 0.859348, 0.880844, 0.893461, 0.929909, 0.893928, 0.859816, 0.899068, 0.914957, 0.900471, 0.902341, 0.880378, 0.84206, 0.839723, 0.79476, 0.841917, 0.809713, 0.858019, 0.778658, 0.813163, 0.796193, 0.788695, 0.773231, 0.851022, 0.896338, 0.934685, 0.998435, 1.01617, 0.95242, 0.934685, 0.95331, 0.91143, 0.983066, 1.114215, 1.17483, 1.182545, 1.105398, 1.256385, 1.224424, 1.258589, 1.323612, 1.356675, 1.448149, 1.504356, 1.369901, 1.378718, 1.423512, 1.378869, 1.422144, 1.433562, 1.425984, 1.449676, 1.38658, 1.418388, 1.373153, 1.345268, 1.368512, 1.377146, 1.385654, 1.39056, 1.401397, 1.415558, 1.417002, 1.424723, 1.396672, 1.527469, 1.550442, 1.571785, 1.579393, 1.55622, 1.651069, 1.844873, 1.953755, 2.017547, 1.967566, 1.907965, 1.938567, 2.04121, 2.157226, 2.230514, 2.471953, 2.638086, 2.755565, 2.819459, 2.448917, 2.316394, 2.381605, 2.388716, 2.357154, 2.353802, 2.330632, 2.362202, 2.404443, 2.309415, 2.303533, 2.30867, 2.32966, 2.127464, 2.128636, 2.256882, 2.312253, 2.308225, 2.294597, 2.3142, 2.364436, 2.375095, 2.453592, 2.489761, 2.506499, 2.623911, 2.664411, 2.708598, 2.684147, 2.721878, 2.748909, 2.874043, 2.849975, 2.842346, 3.086287, 3.299519, 3.054477, 2.860747, 2.871558, 2.860821, 2.860515, 2.89777, 2.875533, 2.842438, 2.965979, 3.086157, 3.06057, 3.048046, 3.042993, 3.077311, 3.038368, 3.033713, 3.045772, 3.088508, 3.084789, 3.196394, 3.110788, 3.168788, 3.029745, 3.061182, 3.041269, 3.106242, 3.096321, 3.029088, 3.032271, 3.071181, 2.963217, 2.967813, 2.95958, 2.909794, 2.95315, 3.024539, 3.020798, 3.075913, 3.081769, 3.105721, 3.099969, 3.108351, 3.120968, 3.024686, 3.017055, 3.000702, 3.022938, 3.001738, 2.978786, 2.980815, 2.951728, 3.092307, 3.534773, 3.51612, 3.460812, 3.527072, 3.589336, 3.673574, 3.60594, 3.624936, 3.710415, 3.687648, 3.721475, 3.88554, 3.98332, 3.888046, 3.835643, 3.894501, 3.939253, 3.945398, 3.959898, 4.003338, 4.079149, 4.468597, 4.752313, 5.039557, 5.166166, 4.849914, 4.732478, 4.883312, 4.950145, 5.177411, 5.128303, 5.146062, 5.384068, 5.83795, 5.884776, 5.843807, 6.391541, 6.116001, 5.923886, 6.313257, 6.484226, 6.712873, 6.868994, 7.135868, 7.828932, 8.05399, 7.877616, 8.61281, 7.580763, 6.904893, 6.953475, 6.959866, 7.118676, 7.101798, 7.15913, 7.033344, 7.498692, 7.526317, 8.203309, 7.750552, 8.050367, 7.963543, 7.697856, 7.887215, 8.09752, 8.200893, 8.500373, 8.29809, 8.427573, 7.964082, 8.033664, 8.707399, 8.976449, 9.349537, 9.524794, 9.310325, 9.635469, 9.696751, 9.833368, 9.61021, 9.307911, 9.524469, 9.466427, 9.585855, 9.220241, 9.602669, 9.59176, 9.671525, 9.722456, 10.012379, 10.265492, 10.419095, 10.693711, 10.995584, 11.160418, 11.346518, 11.402729, 11.065345, 11.076001, 11.733151, 11.644355, 11.68851, 11.487292, 11.898561, 11.744236, 11.931263, 12.249458, 12.28971, 12.948782, 12.666823, 12.454147, 12.202697, 12.219549, 12.780793, 12.167916, 12.331805, 12.274093, 12.593256, 12.615281, 12.337846, 12.791126, 12.778118, 13.157193, 13.192336, 12.862713, 13.445921, 13.039128, 12.937123, 13.007307, 13.570614, 12.962474, 13.132283, 13.214635, 13.349292, 13.314918, 13.175617, 13.880579, 13.912851, 13.949122, 14.14261, 14.135468, 14.195275, 14.317312, 14.184275, 13.838619, 14.298282, 14.112648, 13.937566, 14.304696, 14.113528, 14.466973, 14.626008, 14.422546, 14.413763, 14.514313, 15.58052, 16.495704, 17.855165, 18.818183, 18.467355, 18.911754, 18.916557, 18.679817, 18.859834, 19.36905, 21.30795, 24.177257, 22.730103, 22.859255, 23.301925, 23.226217, 22.781272, 23.364131, 22.542555, 24.049299, 23.293574, 26.356143, 26.356143, 26.356143], "dd_vals": [-0.022343000000000002, -0.022343000000000002, -0.03189200000000003, -0.05462800000000001, 0.0, 0.0, -0.023572763607872416, -0.08188481127814051, -0.06947766650828269, -0.10669819920134804, -0.08932945878665843, -0.10339106984913249, -0.059139731624830216, -0.062861604570835, -0.06120713827821889, -0.03639375035501147, -0.004962497261339793, -0.04714642883225317, -0.05955357360211122, -0.10339106984913249, -0.11538437264170931, -0.10008213726390036, -0.08147187091736785, -0.126549991479724, -0.14557409980353775, -0.15301784569554755, -0.1728696379739234, -0.20099195848236306, -0.18238169213583033, -0.16747706963815423, -0.15694438558892232, -0.19149252695157148, -0.2508982354463317, -0.2572176655525692, -0.22519765687901838, -0.20581650841794252, -0.19444081293350846, -0.16157869444126371, -0.1940197580241615, -0.2247757003531632, -0.1893854491718201, -0.1750596644724326, -0.18812048121076275, -0.18643445834035843, -0.20623666171078125, -0.2407848030734303, -0.2428918808531817, -0.2834312639130697, -0.24091373423410833, -0.2699493922653926, -0.2263959052184662, -0.29794909292871186, -0.26683881531197284, -0.2821392474567652, -0.28889956803553085, -0.3028421657189174, -0.2327045159266048, -0.1918468622393089, -0.15727257399792083, -0.09979452159777269, -0.08380435282417842, -0.14128240522432667, -0.15727257399792083, -0.14047996653199524, -0.1782396658969867, -0.11365146571287654, 0.0, 0.0, 0.0, -0.06523810933199148, 0.0, -0.02543885831174375, 0.0, 0.0, 0.0, 0.0, 0.0, -0.08937711552318728, -0.08351613580827932, -0.05373993921651521, -0.08341576063112732, -0.0546492984373379, -0.04705933967757636, -0.05209671115081804, -0.03634777938200806, -0.0782899792336389, -0.05714604787696531, -0.08721539316491578, -0.1057515641244493, -0.0903004342057333, -0.08456110122869853, -0.07890552502200288, -0.07564432886896455, -0.06844058188354352, -0.05902725152822863, -0.05806737235069359, -0.05293494359048001, -0.07158146077125371, 0.0, 0.0, 0.0, 0.0, -0.014672092379794055, 0.0, 0.0, 0.0, 0.0, -0.024773152744397064, -0.05431447198008277, -0.03914654776319959, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.13142308506702893, -0.17842607393829824, -0.1552971687121537, -0.1527750536539102, -0.1639693998032956, -0.1651582803651339, -0.17337616897426067, -0.1621789854011001, -0.14719703318970057, -0.18090137150424968, -0.1829875873350172, -0.1811656065933216, -0.17372091596295602, -0.24543538317102687, -0.24501970058794964, -0.19953366940253436, -0.17989479541997244, -0.18132343829082098, -0.18615698969199412, -0.17920423740866598, -0.16138663481185578, -0.15760612230927995, -0.12976496554835526, -0.11693661798238597, -0.11100001808857674, -0.06935656805082113, -0.05499211018851502, -0.03931995464378102, -0.04799218573492303, -0.03460983117683225, -0.025022530918165642, 0.0, -0.008374265799085068, -0.011028714601695189, 0.0, 0.0, -0.0742659763438247, -0.13298059505036952, -0.12970405686404607, -0.1329581675389655, -0.1330509083293656, -0.12175986863539812, -0.12849933581228057, -0.13852958567597273, -0.1010874615360603, -0.06466457686711302, -0.07241934354674129, -0.07621504831461812, -0.07774648365413261, -0.06734557370331862, -0.07914820311687853, -0.08055901481397743, -0.0769042396785714, -0.0639520487683205, -0.06507918275360747, -0.03125455558825385, -0.05719954938886551, -0.03962122963983539, -0.08176161434439377, -0.07223386196594106, -0.07826898405494875, -0.0585773259678154, -0.06158412786833478, -0.08196073427672346, -0.08099604821187567, -0.06920342025610393, -0.10192455324548821, -0.10053162294261675, -0.10302683512354383, -0.11811570110673708, -0.10497560401985873, -0.08333942007910855, -0.08447322170292093, -0.06776927182416592, -0.06599446767847073, -0.0587352277710782, -0.06047851217101641, -0.05793814189280322, -0.05411425119843227, -0.08329486813077913, -0.08560762947569023, -0.09056380642148143, -0.08382464231907749, -0.09024982126182635, -0.0972059866907874, -0.09659104857404965, -0.10540657592818825, -0.0628006688247591, 0.0, -0.00527700081447946, -0.020923833015585314, -0.0021786406086048427, 0.0, 0.0, -0.01841095347473609, -0.013239967399595098, 0.0, -0.006135971313181998, 0.0, 0.0, 0.0, -0.023918239056867074, -0.03707384794593449, -0.022297731540523946, -0.011062882218852654, -0.009520199230792392, -0.0058800196820743, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.06121599654366494, -0.08394774771077806, -0.054751241055746136, -0.041814568095566385, 0.0, -0.009485049574005311, -0.00605495681142576, 0.0, 0.0, 0.0, -0.006961862269693753, 0.0, -0.043110104433344065, -0.07316780100448383, -0.012248063495172712, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.021898959397764428, 0.0, -0.11982697865156666, -0.19829962578995697, -0.1926589579939647, -0.19191692374497982, -0.17347810993160184, -0.17543774912020582, -0.16878115272483651, -0.1833856778449774, -0.12935592448922006, -0.12614849276832996, -0.04754557455696795, -0.10011343568475328, -0.06530307762507248, -0.0753838758779074, -0.10623176408164114, -0.08424602423599259, -0.05982832548262418, -0.047826086956521574, -0.01305462444893124, -0.03654091986239094, -0.021507150395747576, -0.07532129467618576, -0.06724239824168876, 0.0, 0.0, 0.0, 0.0, -0.02251691742624562, 0.0, 0.0, 0.0, -0.022693953892501506, -0.05343611669979187, -0.03141334688176012, -0.03731590234393756, -0.025170724821851453, -0.06235167848899792, -0.023460832544861532, -0.02457021846431451, -0.01645855214612113, -0.01127914667690666, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02958800476622747, -0.028653491633450323, 0.0, -0.007567958513446271, -0.003804689805832928, -0.020954217669234776, 0.0, -0.012970055790780033, 0.0, 0.0, 0.0, 0.0, -0.021774943774634514, -0.03819934569907801, -0.05761816053432667, -0.05631672538776222, -0.012973343747697652, -0.06030420467345887, -0.04764749302289595, -0.052104437313100105, -0.02745632755266092, -0.02575539537232152, -0.04718096265733707, -0.012175353635577424, -0.013179926884242854, 0.0, 0.0, -0.02498594638584095, 0.0, -0.030254007888340317, -0.037840323470590076, -0.032620599213694534, 0.0, -0.04481300551323619, -0.032300012364952835, -0.026231606027553478, -0.016308915720394168, -0.018841888804736473, -0.029106789125385224, 0.0, 0.0, 0.0, 0.0, -0.0005049987237151221, 0.0, 0.0, -0.009292037499776473, -0.03343455810699658, -0.0013291601105011042, -0.014294862052318114, -0.026523554142006467, -0.0008811709907557974, -0.014233398000965458, 0.0, 0.0, -0.013910972836880697, -0.01451147845673273, -0.007636738609742344, 0.0, 0.0, 0.0, 0.0, -0.018643032645606628, 0.0, 0.0, -0.012514962421544262, -0.0029985900711213542, 0.0, 0.0, 0.0, -0.05985600434325533, -0.05451412457583582, -0.03620476880400458, -0.0393361413993325, -0.057739593867079275, -0.033631854928787064, -0.06761321187097447, -0.005292494512508128, -0.03655017606008826, 0.0, 0.0, 0.0], "bm_dates": ["2010-07-29", "2012-06-15", "2012-06-28", "2012-07-13", "2012-07-30", "2012-08-15", "2012-08-30", "2012-09-14", "2012-09-27", "2012-10-15", "2012-10-30", "2012-11-15", "2012-11-29", "2012-12-14", "2012-12-28", "2013-01-15", "2013-01-30", "2013-02-08", "2013-02-27", "2013-03-15", "2013-03-28", "2013-04-15", "2013-04-25", "2013-05-15", "2013-05-30", "2013-06-14", "2013-06-27", "2013-07-15", "2013-07-30", "2013-08-15", "2013-08-29", "2013-09-13", "2013-09-27", "2013-10-15", "2013-10-30", "2013-11-15", "2013-11-28", "2013-12-13", "2013-12-30", "2014-01-15", "2014-01-29", "2014-02-14", "2014-02-27", "2014-03-14", "2014-03-28", "2014-04-15", "2014-04-29", "2014-05-15", "2014-05-29", "2014-06-13", "2014-06-27", "2014-07-15", "2014-07-30", "2014-08-15", "2014-08-28", "2014-09-15", "2014-09-29", "2014-10-15", "2014-10-30", "2014-11-14", "2014-11-27", "2014-12-15", "2014-12-30", "2015-01-15", "2015-01-29", "2015-02-13", "2015-02-26", "2015-03-13", "2015-03-30", "2015-04-15", "2015-04-29", "2015-05-15", "2015-05-28", "2015-06-15", "2015-06-29", "2015-07-15", "2015-07-30", "2015-08-14", "2015-08-28", "2015-09-15", "2015-09-29", "2015-10-15", "2015-10-29", "2015-11-13", "2015-11-27", "2015-12-15", "2015-12-30", "2016-01-15", "2016-01-28", "2016-02-15", "2016-02-26", "2016-03-15", "2016-03-30", "2016-04-15", "2016-04-28", "2016-05-13", "2016-05-30", "2016-06-15", "2016-06-29", "2016-07-15", "2016-07-28", "2016-08-15", "2016-08-30", "2016-09-14", "2016-09-29", "2016-10-14", "2016-10-28", "2016-11-15", "2016-11-29", "2016-12-15", "2016-12-29", "2017-01-13", "2017-01-25", "2017-02-15", "2017-02-27", "2017-03-15", "2017-03-30", "2017-04-14", "2017-04-27", "2017-05-15", "2017-05-26", "2017-06-15", "2017-06-29", "2017-07-14", "2017-07-28", "2017-08-15", "2017-08-30", "2017-09-15", "2017-09-28", "2017-10-13", "2017-10-30", "2017-11-15", "2017-11-29", "2017-12-15", "2017-12-28", "2018-01-15", "2018-01-30", "2018-02-14", "2018-02-27", "2018-03-15", "2018-03-29", "2018-04-13", "2018-04-26", "2018-05-15", "2018-05-30", "2018-06-15", "2018-06-28", "2018-07-13", "2018-07-30", "2018-08-15", "2018-08-30", "2018-09-14", "2018-09-27", "2018-10-15", "2018-10-30", "2018-11-15", "2018-11-29", "2018-12-14", "2018-12-27", "2019-01-15", "2019-01-30", "2019-02-15", "2019-02-27", "2019-03-15", "2019-03-28", "2019-04-15", "2019-04-29", "2019-05-15", "2019-05-30", "2019-06-14", "2019-06-27", "2019-07-15", "2019-07-30", "2019-08-15", "2019-08-29", "2019-09-12", "2019-09-27", "2019-10-15", "2019-10-30", "2019-11-15", "2019-11-28", "2019-12-13", "2019-12-30", "2020-01-15", "2020-01-22", "2020-02-14", "2020-02-27", "2020-03-13", "2020-03-30", "2020-04-15", "2020-04-29", "2020-05-15", "2020-05-28", "2020-06-15", "2020-06-29", "2020-07-15", "2020-07-30", "2020-08-14", "2020-08-28", "2020-09-15", "2020-09-29", "2020-10-15", "2020-10-29", "2020-11-13", "2020-11-27", "2020-12-15", "2020-12-30", "2021-01-15", "2021-01-28", "2021-02-10", "2021-02-25", "2021-03-15", "2021-03-30", "2021-04-15", "2021-04-29", "2021-05-14", "2021-05-28", "2021-06-15", "2021-06-29", "2021-07-15", "2021-07-29", "2021-08-13", "2021-08-30", "2021-09-15", "2021-09-29", "2021-10-15", "2021-10-28", "2021-11-15", "2021-11-29", "2021-12-15", "2021-12-30", "2022-01-14", "2022-01-27", "2022-02-15", "2022-02-25", "2022-03-15", "2022-03-30", "2022-04-15", "2022-04-28", "2022-05-13", "2022-05-30", "2022-06-15", "2022-06-29", "2022-07-15", "2022-07-28", "2022-08-15", "2022-08-30", "2022-09-15", "2022-09-29", "2022-10-14", "2022-10-28", "2022-11-15", "2022-11-29", "2022-12-15", "2022-12-29", "2023-01-13", "2023-01-30", "2023-02-15", "2023-02-27", "2023-03-15", "2023-03-30", "2023-04-14", "2023-04-27", "2023-05-15", "2023-05-30", "2023-06-15", "2023-06-29", "2023-07-14", "2023-07-28", "2023-08-15", "2023-08-30", "2023-09-15", "2023-09-27", "2023-10-13", "2023-10-30", "2023-11-15", "2023-11-29", "2023-12-15", "2023-12-28", "2024-01-15", "2024-01-30", "2024-02-08", "2024-02-28", "2024-03-15", "2024-03-28", "2024-04-15", "2024-04-29", "2024-05-15", "2024-05-30", "2024-06-14", "2024-06-27", "2024-07-15", "2024-07-30", "2024-08-15", "2024-08-29", "2024-09-13", "2024-09-27", "2024-10-15", "2024-10-30", "2024-11-15", "2024-11-28", "2024-12-13", "2024-12-30", "2025-01-15", "2025-01-24", "2025-02-14", "2025-02-27", "2025-03-14", "2025-03-28", "2025-04-15", "2025-04-29", "2025-05-15", "2025-05-29", "2025-06-13", "2025-06-27", "2025-07-15", "2025-07-30", "2025-08-15", "2025-08-28", "2025-09-15", "2025-09-29", "2025-10-15", "2025-10-30", "2025-11-14", "2025-11-27", "2025-12-15", "2025-12-30", "2026-01-15", "2026-01-29", "2026-02-13", "2026-02-26", "2026-03-13", "2026-03-30", "2026-04-15", "2026-04-29", "2026-05-15", "2026-05-28", "2026-06-15", "2026-06-29", "2026-07-15"], "bm_navs": [1.0, 0.9802731411229135, 0.9320940819423368, 0.9400606980273142, 0.9017450682852806, 0.8975720789074355, 0.8509104704097116, 0.8922610015174505, 0.866843702579666, 0.88391502276176, 0.8611532625189678, 0.844461305007587, 0.8175265553869496, 0.9089529590288312, 0.9554353566009102, 0.9969760242792106, 1.0312086115326249, 1.0650565629742033, 0.9931296661608496, 0.9727439681335356, 0.9592817147192716, 0.9388960166919573, 0.9492811836115325, 0.9631280728376326, 1.0135153641881636, 0.9362035660091046, 0.8415831562974202, 0.9019709787556903, 0.8592764036418815, 0.9131254172989376, 0.9119715098634292, 0.9796674127465858, 0.9427423748103186, 0.9696668816388466, 0.944280918057663, 0.9223566767830046, 0.958127807283763, 0.9462040971168434, 0.9035095220030349, 0.8669691198786038, 0.8736270106221548, 0.898789984825493, 0.8449254931714717, 0.8327371775417297, 0.8453186646433988, 0.8740201820940817, 0.8453186646433988, 0.8417801213960544, 0.8476776934749619, 0.857113808801214, 0.8512162367223066, 0.8657635811836115, 0.9302437025796662, 0.9451842185128985, 0.9278846737481032, 0.9738857359635813, 0.9793901365705617, 0.9829286798179063, 0.9845013657056148, 1.0301092564491656, 1.09458937784522, 1.2797731411229136, 1.3682367223065253, 1.4272124430955995, 1.3765326251896817, 1.3737509484066772, 1.4170656297420339, 1.4297818664643407, 1.6197306525037944, 1.7361636949924135, 1.8871690060698039, 1.8231904400606993, 1.913396244309561, 2.054864377845221, 1.6618531866464352, 1.5676735584218522, 1.530319613050077, 1.630062594840669, 1.3518949165402134, 1.2608943474962073, 1.2712262898330813, 1.409117981790593, 1.4242185128983318, 1.5116426403641892, 1.433755690440062, 1.4850180197268599, 1.5148216995447659, 1.259304817905919, 1.1501918816388474, 1.1865264795144166, 1.1841041729893786, 1.2329540212443106, 1.297952579666162, 1.3177347496206386, 1.2741332321699559, 1.2406246585735976, 1.2361837632776949, 1.2608105462822474, 1.274133232169956, 1.3415540971168454, 1.3181384673748118, 1.391615098634296, 1.3625474203338408, 1.3310574355083475, 1.3371132018209422, 1.3605288315629755, 1.3738515174506842, 1.4061489377845233, 1.465495447647953, 1.3706217754173002, 1.3544730652503807, 1.3625474203338404, 1.3840048558421862, 1.404520789074356, 1.4114962063732939, 1.4184716236722315, 1.4069827010622162, 1.4299605462822464, 1.413137481031867, 1.392621547799697, 1.4307811836115332, 1.45211775417299, 1.514075872534143, 1.5407465857359637, 1.5493632776934751, 1.541156904400607, 1.5965499241274659, 1.598601517450683, 1.595729286798179, 1.6363508345978754, 1.6679453717754174, 1.6929748103186648, 1.6827168437025797, 1.6515326251896814, 1.6671247344461304, 1.7500091047040969, 1.7655515933232169, 1.6436464339908952, 1.6838668437025797, 1.6979647192716238, 1.6179385432473445, 1.6025967374810322, 1.553254172989378, 1.6262314112291354, 1.545375948406677, 1.5673520485584218, 1.4288611532625193, 1.4653497723823978, 1.4769597875569045, 1.3898846737481032, 1.4164218512898334, 1.3695671471927167, 1.4396418816388472, 1.3210538694992415, 1.31359028831563, 1.3687378603945377, 1.3276881638846743, 1.3380542488619125, 1.2654916540212449, 1.3218831562974207, 1.3401579666160852, 1.4115598254931718, 1.550561077389985, 1.578023330804249, 1.57041839908953, 1.6718174886191204, 1.6452002276176028, 1.5683059180576637, 1.5421111532625191, 1.550561077389985, 1.6308353566009106, 1.6346378224582703, 1.6578751138088013, 1.5856282625189682, 1.6270328907435507, 1.7060396813353564, 1.6544951441578146, 1.6887173368740511, 1.6675925265553866, 1.6659025417298932, 1.6604100910470405, 1.7031089529590282, 1.7490345220030346, 1.782083763277693, 1.7679198027314105, 1.7069718512898326, 1.7473176783004547, 1.6692012898330797, 1.5734872534142634, 1.6237049317147185, 1.652891274658573, 1.674781031866464, 1.6524620637329281, 1.6979584218512893, 1.771782701062215, 2.0533450682852803, 2.023300303490136, 2.0507698027314105, 2.110430121396054, 2.0374642640364184, 2.000122913505311, 2.0889695751138087, 2.080814567526555, 2.111717754172989, 2.170090440060698, 2.1516343702579666, 2.222454172989378, 2.3718195751138085, 2.341739567526555, 2.5252519347496207, 2.38218186646434, 2.191711684370258, 2.2121502655538694, 2.151269385432473, 2.249548520485584, 2.229544802731411, 2.3186918057663117, 2.253027427921092, 2.272161418816387, 2.2643338770864934, 2.133439984825492, 2.1825795523520473, 2.1225683990895288, 2.1503996585735954, 2.1399629362670702, 2.1769263277693462, 2.152139112291349, 2.1586620637329275, 2.1434418437025786, 2.2086713581183597, 2.172577693474961, 2.0847352807283746, 2.04264984825493, 2.026750303490135, 2.016150606980272, 1.7546914264036406, 1.8765879362670699, 1.846555462822457, 1.729075493171471, 1.7586663125948396, 1.7776574355083448, 1.892487481031865, 1.9688936267071309, 1.8969040212443085, 1.8898375569043995, 1.8748213201820931, 1.8288893019726848, 1.8063649468892249, 1.7198007587253406, 1.7237756449165391, 1.591721092564491, 1.733492033383914, 1.725983915022761, 1.7723575872534134, 1.7321670713201816, 1.8302142640364183, 1.8863476858877086, 1.8464226100151742, 1.8145722685887706, 1.784964908952959, 1.8123292867981786, 1.832067526555386, 1.7881050834597871, 1.7921424506828523, 1.7217128224582698, 1.7683668437025795, 1.7311333459787552, 1.772852807283763, 1.8248899848254927, 1.758049127465857, 1.7306847496206372, 1.6988344081942335, 1.6947970409711686, 1.6759559939301973, 1.6382738998482549, 1.648591616084977, 1.5961058421851289, 1.530610773899848, 1.5651526934749618, 1.500554817905918, 1.4859238998482547, 1.540449013657056, 1.5798537177541725, 1.6316296661608494, 1.6082617602427915, 1.6215493930197264, 1.6568303490136564, 1.6600377086494682, 1.6476664643399084, 1.628422306525037, 1.5945159332321692, 1.61559286798179, 1.5720644157814863, 1.5615259484066761, 1.5335761001517447, 1.4790509863429435, 1.77275349013657, 1.8011615326251889, 1.8194893019726852, 1.857977617602427, 1.813532776934749, 1.8419408194233677, 1.8721816388467367, 1.7791682094081935, 1.800245144157814, 1.8483555386949915, 1.8634759484066763, 1.881345523520485, 1.8364424886191195, 1.7645059939301968, 1.7727534901365702, 1.837817071320182, 1.817198330804249, 1.8236130500758727, 1.8567166160849773, 1.91059559939302, 1.982746585735964, 2.0122628983308046, 2.135950303490137, 2.1687462063732927, 2.2151289833080425, 2.204821699544765, 2.2596377086494694, 2.221219650986343, 2.1654666160849776, 2.186549696509864, 2.2362120637329292, 2.2840003793626718, 2.2919320182094083, 2.245305045523521, 2.276069233687406, 2.248189188163885, 2.1631069802731413, 2.2563609256449166, 2.3174086115326253, 2.3448079666160853, 2.370765250379363, 2.3645162746585733, 2.383743892261001, 2.325580349013657], "shadow_strategies": [], "regime_counts": {"中波": 200, "低波": 111, "高波": 73}};
+var D = {"dates": ["2010-07-29", "2010-08-13", "2010-08-30", "2010-09-15", "2010-09-29", "2010-10-15", "2010-10-28", "2010-11-15", "2010-11-29", "2010-12-15", "2010-12-30", "2011-01-14", "2011-01-28", "2011-02-15", "2011-02-25", "2011-03-15", "2011-03-30", "2011-04-15", "2011-04-28", "2011-05-13", "2011-05-30", "2011-06-15", "2011-06-29", "2011-07-15", "2011-07-28", "2011-08-15", "2011-08-30", "2011-09-15", "2011-09-29", "2011-10-14", "2011-10-28", "2011-11-15", "2011-11-29", "2011-12-15", "2011-12-29", "2012-01-13", "2012-01-30", "2012-02-15", "2012-02-28", "2012-03-15", "2012-03-29", "2012-04-13", "2012-04-26", "2012-05-15", "2012-05-30", "2012-06-15", "2012-06-28", "2012-07-13", "2012-07-30", "2012-08-15", "2012-08-30", "2012-09-14", "2012-09-27", "2012-10-15", "2012-10-30", "2012-11-15", "2012-11-29", "2012-12-14", "2012-12-28", "2013-01-15", "2013-01-30", "2013-02-08", "2013-02-27", "2013-03-15", "2013-03-28", "2013-04-15", "2013-04-25", "2013-05-15", "2013-05-30", "2013-06-14", "2013-06-27", "2013-07-15", "2013-07-30", "2013-08-15", "2013-08-29", "2013-09-13", "2013-09-27", "2013-10-15", "2013-10-30", "2013-11-15", "2013-11-28", "2013-12-13", "2013-12-30", "2014-01-15", "2014-01-29", "2014-02-14", "2014-02-27", "2014-03-14", "2014-03-28", "2014-04-15", "2014-04-29", "2014-05-15", "2014-05-29", "2014-06-13", "2014-06-27", "2014-07-15", "2014-07-30", "2014-08-15", "2014-08-28", "2014-09-15", "2014-09-29", "2014-10-15", "2014-10-30", "2014-11-14", "2014-11-27", "2014-12-15", "2014-12-30", "2015-01-15", "2015-01-29", "2015-02-13", "2015-02-26", "2015-03-13", "2015-03-30", "2015-04-15", "2015-04-29", "2015-05-15", "2015-05-28", "2015-06-15", "2015-06-29", "2015-07-15", "2015-07-30", "2015-08-14", "2015-08-28", "2015-09-15", "2015-09-29", "2015-10-15", "2015-10-29", "2015-11-13", "2015-11-27", "2015-12-15", "2015-12-30", "2016-01-15", "2016-01-28", "2016-02-15", "2016-02-26", "2016-03-15", "2016-03-30", "2016-04-15", "2016-04-28", "2016-05-13", "2016-05-30", "2016-06-15", "2016-06-29", "2016-07-15", "2016-07-28", "2016-08-15", "2016-08-30", "2016-09-14", "2016-09-29", "2016-10-14", "2016-10-28", "2016-11-15", "2016-11-29", "2016-12-15", "2016-12-29", "2017-01-13", "2017-01-25", "2017-02-15", "2017-02-27", "2017-03-15", "2017-03-30", "2017-04-14", "2017-04-27", "2017-05-15", "2017-05-26", "2017-06-15", "2017-06-29", "2017-07-14", "2017-07-28", "2017-08-15", "2017-08-30", "2017-09-15", "2017-09-28", "2017-10-13", "2017-10-30", "2017-11-15", "2017-11-29", "2017-12-15", "2017-12-28", "2018-01-15", "2018-01-30", "2018-02-14", "2018-02-27", "2018-03-15", "2018-03-29", "2018-04-13", "2018-04-26", "2018-05-15", "2018-05-30", "2018-06-15", "2018-06-28", "2018-07-13", "2018-07-30", "2018-08-15", "2018-08-30", "2018-09-14", "2018-09-27", "2018-10-15", "2018-10-30", "2018-11-15", "2018-11-29", "2018-12-14", "2018-12-27", "2019-01-15", "2019-01-30", "2019-02-15", "2019-02-27", "2019-03-15", "2019-03-28", "2019-04-15", "2019-04-29", "2019-05-15", "2019-05-30", "2019-06-14", "2019-06-27", "2019-07-15", "2019-07-30", "2019-08-15", "2019-08-29", "2019-09-12", "2019-09-27", "2019-10-15", "2019-10-30", "2019-11-15", "2019-11-28", "2019-12-13", "2019-12-30", "2020-01-15", "2020-01-22", "2020-02-14", "2020-02-27", "2020-03-13", "2020-03-30", "2020-04-15", "2020-04-29", "2020-05-15", "2020-05-28", "2020-06-15", "2020-06-29", "2020-07-15", "2020-07-30", "2020-08-14", "2020-08-28", "2020-09-15", "2020-09-29", "2020-10-15", "2020-10-29", "2020-11-13", "2020-11-27", "2020-12-15", "2020-12-30", "2021-01-15", "2021-01-28", "2021-02-10", "2021-02-25", "2021-03-15", "2021-03-30", "2021-04-15", "2021-04-29", "2021-05-14", "2021-05-28", "2021-06-15", "2021-06-29", "2021-07-15", "2021-07-29", "2021-08-13", "2021-08-30", "2021-09-15", "2021-09-29", "2021-10-15", "2021-10-28", "2021-11-15", "2021-11-29", "2021-12-15", "2021-12-30", "2022-01-14", "2022-01-27", "2022-02-15", "2022-02-25", "2022-03-15", "2022-03-30", "2022-04-15", "2022-04-28", "2022-05-13", "2022-05-30", "2022-06-15", "2022-06-29", "2022-07-15", "2022-07-28", "2022-08-15", "2022-08-30", "2022-09-15", "2022-09-29", "2022-10-14", "2022-10-28", "2022-11-15", "2022-11-29", "2022-12-15", "2022-12-29", "2023-01-13", "2023-01-30", "2023-02-15", "2023-02-27", "2023-03-15", "2023-03-30", "2023-04-14", "2023-04-27", "2023-05-15", "2023-05-30", "2023-06-15", "2023-06-29", "2023-07-14", "2023-07-28", "2023-08-15", "2023-08-30", "2023-09-15", "2023-09-27", "2023-10-13", "2023-10-30", "2023-11-15", "2023-11-29", "2023-12-15", "2023-12-28", "2024-01-15", "2024-01-30", "2024-02-08", "2024-02-28", "2024-03-15", "2024-03-28", "2024-04-15", "2024-04-29", "2024-05-15", "2024-05-30", "2024-06-14", "2024-06-27", "2024-07-15", "2024-07-30", "2024-08-15", "2024-08-29", "2024-09-13", "2024-09-27", "2024-10-15", "2024-10-30", "2024-11-15", "2024-11-28", "2024-12-13", "2024-12-30", "2025-01-15", "2025-01-24", "2025-02-14", "2025-02-27", "2025-03-14", "2025-03-28", "2025-04-15", "2025-04-29", "2025-05-15", "2025-05-29", "2025-06-13", "2025-06-27", "2025-07-15", "2025-07-30", "2025-08-15", "2025-08-28", "2025-09-15", "2025-09-29", "2025-10-15", "2025-10-30", "2025-11-14", "2025-11-27", "2025-12-15", "2025-12-30", "2026-01-15", "2026-01-29", "2026-02-13", "2026-02-26", "2026-03-13", "2026-03-30", "2026-04-15", "2026-04-29", "2026-05-15", "2026-05-28", "2026-06-15", "2026-06-29", "2026-07-15"], "returns": [-0.022343, 0.0, -0.009767, -0.023485, 0.16835, 0.004159, -0.023573, -0.05972, 0.013514, -0.04, 0.019444, -0.015441, 0.049354, -0.003956, 0.001765, 0.026432, 0.032618, -0.042394, -0.013021, -0.046614, -0.013376, 0.017298, 0.02068, -0.049077, -0.02178, -0.008712, -0.023438, -0.034, 0.023292, 0.018229, 0.012652, -0.04098, -0.073476, -0.008436, 0.043108, 0.025014, 0.014324, 0.040795, -0.038693, -0.03816, 0.045652, 0.017672, -0.015832, 0.002076, -0.02434, -0.043524, -0.002775, -0.053545, 0.059334, -0.038251, 0.059659, -0.092493, 0.044313, -0.020869, -0.009417, -0.019608, 0.100606, 0.053249, 0.042781, 0.068205, 0.017763, -0.062736, -0.018621, 0.019927, -0.043931, 0.078597, 0.133408, 0.054402, 0.006567, -0.065238, 0.13659, -0.025439, 0.027903, 0.051664, 0.024979, 0.067425, 0.038813, -0.089377, 0.006436, 0.03249, -0.031361, 0.031384, 0.008029, -0.005286, 0.016614, -0.043524, 0.02294, -0.031892, -0.020307, 0.017278, 0.006309, 0.006178, 0.003541, 0.007793, 0.010105, 0.00102, 0.005449, -0.019689, 0.093649, 0.01504, 0.013766, 0.00484, -0.014672, 0.060948, 0.117381, 0.059019, 0.032651, -0.024773, -0.030292, 0.016039, 0.052948, 0.056837, 0.033973, 0.108244, 0.067207, 0.044532, 0.023187, -0.131423, -0.054115, 0.028152, 0.002986, -0.013213, -0.001422, -0.009844, 0.013546, 0.017882, -0.039522, -0.002547, 0.00223, 0.009092, -0.086792, 0.000551, 0.060248, 0.024534, -0.001742, -0.005904, 0.008543, 0.021708, 0.004508, 0.03305, 0.014741, 0.006723, 0.046843, 0.015435, 0.016584, -0.009027, 0.014057, 0.009931, 0.045521, -0.008374, -0.002677, 0.085824, 0.06909, -0.074266, -0.063425, 0.003779, -0.003739, -0.000107, 0.013024, -0.007674, -0.011509, 0.043463, 0.040519, -0.008291, -0.004092, -0.001658, 0.011278, -0.012655, -0.001532, 0.003975, 0.014031, -0.001204, 0.036179, -0.026782, 0.018645, -0.043879, 0.010376, -0.006505, 0.021364, -0.003194, -0.021714, 0.001051, 0.012832, -0.035154, 0.001551, -0.002774, -0.016822, 0.0149, 0.024174, -0.001237, 0.018245, 0.001904, 0.007772, -0.001852, 0.002704, 0.004059, -0.03085, -0.002523, -0.00542, 0.00741, -0.007013, -0.007646, 0.000681, -0.009758, 0.047626, 0.143086, -0.005277, -0.01573, 0.019146, 0.017653, 0.023469, -0.018411, 0.005268, 0.023581, -0.006136, 0.009173, 0.044086, 0.025165, -0.023918, -0.013478, 0.015345, 0.011491, 0.00156, 0.003675, 0.01097, 0.018937, 0.095473, 0.063491, 0.060443, 0.025123, -0.061216, -0.024214, 0.031872, 0.013686, 0.045911, -0.009485, 0.003463, 0.04625, 0.084301, 0.008021, -0.006962, 0.093729, -0.04311, -0.031412, 0.065729, 0.027081, 0.035262, 0.023257, 0.038852, 0.097124, 0.028747, -0.021899, 0.093327, -0.119827, -0.089156, 0.007036, 0.000919, 0.022818, -0.002371, 0.007443, -0.017566, 0.066163, 0.003684, 0.08995, -0.055192, 0.038683, -0.010785, -0.033363, 0.024599, 0.026664, 0.012766, 0.036518, -0.023797, 0.015604, -0.054997, 0.008737, 0.083864, 0.030899, 0.041563, 0.018745, -0.022517, 0.034923, 0.00636, 0.014089, -0.022694, -0.031456, 0.023266, -0.006094, 0.012616, -0.038141, 0.041477, -0.001136, 0.008316, 0.005266, 0.02982, 0.02528, 0.014963, 0.026357, 0.028229, 0.014991, 0.016675, 0.004954, -0.029588, 0.000963, 0.059331, -0.007568, 0.003792, -0.017215, 0.035802, -0.01297, 0.015925, 0.026669, 0.003286, 0.053628, -0.021775, -0.01679, -0.02019, 0.001381, 0.04593, -0.047953, 0.013469, -0.00468, 0.026003, 0.001749, -0.021992, 0.036739, -0.001017, 0.029666, 0.002671, -0.024986, 0.045341, -0.030254, -0.007823, 0.005425, 0.043307, -0.044813, 0.0131, 0.006271, 0.01019, -0.002575, -0.010462, 0.053505, 0.002325, 0.002607, 0.013871, -0.000505, 0.004231, 0.008597, -0.007921, 0.011236, 0.0333, -0.012983, -0.012406, 0.026341, -0.013364, 0.025043, 0.010993, -0.013911, -0.000609, 0.006976, 0.073459, 0.058739, 0.082413, 0.053935, -0.018643, 0.024064, 0.000254, -0.012515, 0.009637, 0.027, 0.100103, 0.134659, -0.059856, 0.005682, 0.019365, -0.003249, -0.019157, 0.025585, -0.035164, 0.06684, -0.031424, 0.131477, 0.0, 0.0], "navs": [0.977657, 0.977657, 0.968108, 0.945372, 1.104526, 1.109119, 1.082974, 1.018299, 1.03206, 0.990778, 1.010042, 0.994446, 1.043526, 1.039398, 1.041233, 1.068754, 1.103615, 1.056828, 1.043067, 0.994446, 0.981144, 0.998116, 1.018757, 0.96876, 0.94766, 0.939404, 0.917386, 0.886195, 0.906836, 0.923367, 0.935049, 0.896731, 0.830843, 0.823834, 0.859348, 0.880844, 0.893461, 0.929909, 0.893928, 0.859816, 0.899068, 0.914957, 0.900471, 0.902341, 0.880378, 0.84206, 0.839723, 0.79476, 0.841917, 0.809713, 0.858019, 0.778658, 0.813163, 0.796193, 0.788695, 0.773231, 0.851022, 0.896338, 0.934685, 0.998435, 1.01617, 0.95242, 0.934685, 0.95331, 0.91143, 0.983066, 1.114215, 1.17483, 1.182545, 1.105398, 1.256385, 1.224424, 1.258589, 1.323612, 1.356675, 1.448149, 1.504356, 1.369901, 1.378718, 1.423512, 1.378869, 1.422144, 1.433562, 1.425984, 1.449676, 1.38658, 1.418388, 1.373153, 1.345268, 1.368512, 1.377146, 1.385654, 1.39056, 1.401397, 1.415558, 1.417002, 1.424723, 1.396672, 1.527469, 1.550442, 1.571785, 1.579393, 1.55622, 1.651069, 1.844873, 1.953755, 2.017547, 1.967566, 1.907965, 1.938567, 2.04121, 2.157226, 2.230514, 2.471953, 2.638086, 2.755565, 2.819459, 2.448917, 2.316394, 2.381605, 2.388716, 2.357154, 2.353802, 2.330632, 2.362202, 2.404443, 2.309415, 2.303533, 2.30867, 2.32966, 2.127464, 2.128636, 2.256882, 2.312253, 2.308225, 2.294597, 2.3142, 2.364436, 2.375095, 2.453592, 2.489761, 2.506499, 2.623911, 2.664411, 2.708598, 2.684147, 2.721878, 2.748909, 2.874043, 2.849975, 2.842346, 3.086287, 3.299519, 3.054477, 2.860747, 2.871558, 2.860821, 2.860515, 2.89777, 2.875533, 2.842438, 2.965979, 3.086157, 3.06057, 3.048046, 3.042993, 3.077311, 3.038368, 3.033713, 3.045772, 3.088508, 3.084789, 3.196394, 3.110788, 3.168788, 3.029745, 3.061182, 3.041269, 3.106242, 3.096321, 3.029088, 3.032271, 3.071181, 2.963217, 2.967813, 2.95958, 2.909794, 2.95315, 3.024539, 3.020798, 3.075913, 3.081769, 3.105721, 3.099969, 3.108351, 3.120968, 3.024686, 3.017055, 3.000702, 3.022938, 3.001738, 2.978786, 2.980815, 2.951728, 3.092307, 3.534773, 3.51612, 3.460812, 3.527072, 3.589336, 3.673574, 3.60594, 3.624936, 3.710415, 3.687648, 3.721475, 3.88554, 3.98332, 3.888046, 3.835643, 3.894501, 3.939253, 3.945398, 3.959898, 4.003338, 4.079149, 4.468597, 4.752313, 5.039557, 5.166166, 4.849914, 4.732478, 4.883312, 4.950145, 5.177411, 5.128303, 5.146062, 5.384068, 5.83795, 5.884776, 5.843807, 6.391541, 6.116001, 5.923886, 6.313257, 6.484226, 6.712873, 6.868994, 7.135868, 7.828932, 8.05399, 7.877616, 8.61281, 7.580763, 6.904893, 6.953475, 6.959866, 7.118676, 7.101798, 7.154656, 7.028978, 7.494036, 7.521644, 8.198216, 7.74574, 8.045368, 7.958599, 7.693076, 7.882318, 8.092492, 8.195801, 8.495095, 8.292938, 8.422341, 7.959137, 8.028676, 8.701993, 8.970876, 9.343732, 9.518881, 9.304544, 9.629487, 9.69073, 9.827263, 9.604243, 9.302132, 9.518555, 9.460549, 9.579903, 9.214516, 9.596707, 9.585805, 9.665521, 9.716419, 10.006163, 10.259119, 10.412626, 10.687071, 10.988757, 11.153489, 11.339474, 11.395649, 11.058475, 11.069124, 11.725866, 11.637125, 11.681253, 11.48016, 11.891173, 11.736944, 11.923855, 12.241852, 12.282079, 12.940743, 12.658958, 12.446414, 12.195121, 12.211962, 12.772858, 12.160361, 12.324149, 12.266472, 12.585437, 12.607449, 12.330186, 12.783185, 12.770184, 13.149024, 13.184145, 12.854726, 13.437572, 13.031032, 12.92909, 12.999231, 13.562188, 12.954426, 13.124129, 13.20643, 13.341004, 13.306651, 13.167437, 13.87196, 13.904213, 13.940461, 14.133829, 14.126691, 14.186462, 14.308423, 14.195086, 14.354581, 14.832589, 14.640018, 14.458393, 14.839242, 14.64093, 15.007583, 15.172562, 14.961496, 14.952385, 15.056692, 16.162742, 17.112125, 18.522387, 19.521392, 19.157454, 19.618459, 19.623442, 19.377855, 19.5646, 20.092844, 22.104198, 25.080727, 23.579495, 23.713473, 24.172685, 24.094148, 23.632576, 24.237216, 23.384938, 24.947988, 24.164022, 27.341035, 27.341035, 27.341035], "dd_vals": [-0.022343000000000002, -0.022343000000000002, -0.03189200000000003, -0.05462800000000001, 0.0, 0.0, -0.023572763607872416, -0.08188481127814051, -0.06947766650828269, -0.10669819920134804, -0.08932945878665843, -0.10339106984913249, -0.059139731624830216, -0.062861604570835, -0.06120713827821889, -0.03639375035501147, -0.004962497261339793, -0.04714642883225317, -0.05955357360211122, -0.10339106984913249, -0.11538437264170931, -0.10008213726390036, -0.08147187091736785, -0.126549991479724, -0.14557409980353775, -0.15301784569554755, -0.1728696379739234, -0.20099195848236306, -0.18238169213583033, -0.16747706963815423, -0.15694438558892232, -0.19149252695157148, -0.2508982354463317, -0.2572176655525692, -0.22519765687901838, -0.20581650841794252, -0.19444081293350846, -0.16157869444126371, -0.1940197580241615, -0.2247757003531632, -0.1893854491718201, -0.1750596644724326, -0.18812048121076275, -0.18643445834035843, -0.20623666171078125, -0.2407848030734303, -0.2428918808531817, -0.2834312639130697, -0.24091373423410833, -0.2699493922653926, -0.2263959052184662, -0.29794909292871186, -0.26683881531197284, -0.2821392474567652, -0.28889956803553085, -0.3028421657189174, -0.2327045159266048, -0.1918468622393089, -0.15727257399792083, -0.09979452159777269, -0.08380435282417842, -0.14128240522432667, -0.15727257399792083, -0.14047996653199524, -0.1782396658969867, -0.11365146571287654, 0.0, 0.0, 0.0, -0.06523810933199148, 0.0, -0.02543885831174375, 0.0, 0.0, 0.0, 0.0, 0.0, -0.08937711552318728, -0.08351613580827932, -0.05373993921651521, -0.08341576063112732, -0.0546492984373379, -0.04705933967757636, -0.05209671115081804, -0.03634777938200806, -0.0782899792336389, -0.05714604787696531, -0.08721539316491578, -0.1057515641244493, -0.0903004342057333, -0.08456110122869853, -0.07890552502200288, -0.07564432886896455, -0.06844058188354352, -0.05902725152822863, -0.05806737235069359, -0.05293494359048001, -0.07158146077125371, 0.0, 0.0, 0.0, 0.0, -0.014672092379794055, 0.0, 0.0, 0.0, 0.0, -0.024773152744397064, -0.05431447198008277, -0.03914654776319959, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.13142308506702893, -0.17842607393829824, -0.1552971687121537, -0.1527750536539102, -0.1639693998032956, -0.1651582803651339, -0.17337616897426067, -0.1621789854011001, -0.14719703318970057, -0.18090137150424968, -0.1829875873350172, -0.1811656065933216, -0.17372091596295602, -0.24543538317102687, -0.24501970058794964, -0.19953366940253436, -0.17989479541997244, -0.18132343829082098, -0.18615698969199412, -0.17920423740866598, -0.16138663481185578, -0.15760612230927995, -0.12976496554835526, -0.11693661798238597, -0.11100001808857674, -0.06935656805082113, -0.05499211018851502, -0.03931995464378102, -0.04799218573492303, -0.03460983117683225, -0.025022530918165642, 0.0, -0.008374265799085068, -0.011028714601695189, 0.0, 0.0, -0.0742659763438247, -0.13298059505036952, -0.12970405686404607, -0.1329581675389655, -0.1330509083293656, -0.12175986863539812, -0.12849933581228057, -0.13852958567597273, -0.1010874615360603, -0.06466457686711302, -0.07241934354674129, -0.07621504831461812, -0.07774648365413261, -0.06734557370331862, -0.07914820311687853, -0.08055901481397743, -0.0769042396785714, -0.0639520487683205, -0.06507918275360747, -0.03125455558825385, -0.05719954938886551, -0.03962122963983539, -0.08176161434439377, -0.07223386196594106, -0.07826898405494875, -0.0585773259678154, -0.06158412786833478, -0.08196073427672346, -0.08099604821187567, -0.06920342025610393, -0.10192455324548821, -0.10053162294261675, -0.10302683512354383, -0.11811570110673708, -0.10497560401985873, -0.08333942007910855, -0.08447322170292093, -0.06776927182416592, -0.06599446767847073, -0.0587352277710782, -0.06047851217101641, -0.05793814189280322, -0.05411425119843227, -0.08329486813077913, -0.08560762947569023, -0.09056380642148143, -0.08382464231907749, -0.09024982126182635, -0.0972059866907874, -0.09659104857404965, -0.10540657592818825, -0.0628006688247591, 0.0, -0.00527700081447946, -0.020923833015585314, -0.0021786406086048427, 0.0, 0.0, -0.01841095347473609, -0.013239967399595098, 0.0, -0.006135971313181998, 0.0, 0.0, 0.0, -0.023918239056867074, -0.03707384794593449, -0.022297731540523946, -0.011062882218852654, -0.009520199230792392, -0.0058800196820743, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.06121599654366494, -0.08394774771077806, -0.054751241055746136, -0.041814568095566385, 0.0, -0.009485049574005311, -0.00605495681142576, 0.0, 0.0, 0.0, -0.006961862269693753, 0.0, -0.043110104433344065, -0.07316780100448383, -0.012248063495172712, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.021898959397764428, 0.0, -0.11982697865156666, -0.19829962578995697, -0.1926589579939647, -0.19191692374497982, -0.17347810993160184, -0.17543774912020582, -0.16930061153096376, -0.183892597189535, -0.12989651461021423, -0.12669105669346004, -0.048136903054868174, -0.10067213836134781, -0.06588349214716216, -0.07595790456308671, -0.10678675136221516, -0.08481459593326679, -0.06041210708235756, -0.048417299348296305, -0.013667432580075523, -0.03713909862170417, -0.022114617645112356, -0.07589543946749078, -0.06782153559639637, 0.0, 0.0, 0.0, 0.0, -0.02251703745429745, 0.0, 0.0, 0.0, -0.022694009512109314, -0.05343613984890805, -0.031413426098395925, -0.03731598513238121, -0.025170792722246316, -0.06235174534354082, -0.023460855784565804, -0.02457021858476771, -0.01645849917723785, -0.011279234106179925, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.029587959404506092, -0.02865347993782541, 0.0, -0.007567969819883724, -0.003804665685246622, -0.02095418794654491, 0.0, -0.012970040886630896, 0.0, 0.0, 0.0, 0.0, -0.02177502481889948, -0.038199429507254634, -0.05761817540152059, -0.05631678181075073, -0.012973366366985317, -0.06030426537332512, -0.04764749597453555, -0.052104504354966275, -0.027456383300402343, -0.025755399052434513, -0.047180984893989475, -0.012175344182324022, -0.013180000561018756, 0.0, 0.0, -0.024985996437387414, 0.0, -0.030253977429851142, -0.037840318176527665, -0.0326205507959324, 0.0, -0.0448129756054112, -0.03230002415539446, -0.026231608056163314, -0.016308872875084868, -0.018841871237885832, -0.02910673410514597, 0.0, 0.0, 0.0, 0.0, -0.0005050294580472015, 0.0, 0.0, -0.007920998701254511, 0.0, 0.0, -0.012982966089062464, -0.025227962562705764, 0.0, -0.013364024927957852, 0.0, 0.0, -0.013911032296325399, -0.014511524157884481, -0.007636811765870499, 0.0, 0.0, 0.0, 0.0, -0.01864303529174549, 0.0, 0.0, -0.012514980807138754, -0.002998556522347151, 0.0, 0.0, 0.0, -0.05985600018691639, -0.05451412951466672, -0.036204771895168686, -0.03933614045557765, -0.05773959423106034, -0.03363184009777709, -0.06761323146653608, -0.005292470190357723, -0.03655017655588688, 0.0, 0.0, 0.0], "bm_dates": ["2010-07-29", "2012-06-15", "2012-06-28", "2012-07-13", "2012-07-30", "2012-08-15", "2012-08-30", "2012-09-14", "2012-09-27", "2012-10-15", "2012-10-30", "2012-11-15", "2012-11-29", "2012-12-14", "2012-12-28", "2013-01-15", "2013-01-30", "2013-02-08", "2013-02-27", "2013-03-15", "2013-03-28", "2013-04-15", "2013-04-25", "2013-05-15", "2013-05-30", "2013-06-14", "2013-06-27", "2013-07-15", "2013-07-30", "2013-08-15", "2013-08-29", "2013-09-13", "2013-09-27", "2013-10-15", "2013-10-30", "2013-11-15", "2013-11-28", "2013-12-13", "2013-12-30", "2014-01-15", "2014-01-29", "2014-02-14", "2014-02-27", "2014-03-14", "2014-03-28", "2014-04-15", "2014-04-29", "2014-05-15", "2014-05-29", "2014-06-13", "2014-06-27", "2014-07-15", "2014-07-30", "2014-08-15", "2014-08-28", "2014-09-15", "2014-09-29", "2014-10-15", "2014-10-30", "2014-11-14", "2014-11-27", "2014-12-15", "2014-12-30", "2015-01-15", "2015-01-29", "2015-02-13", "2015-02-26", "2015-03-13", "2015-03-30", "2015-04-15", "2015-04-29", "2015-05-15", "2015-05-28", "2015-06-15", "2015-06-29", "2015-07-15", "2015-07-30", "2015-08-14", "2015-08-28", "2015-09-15", "2015-09-29", "2015-10-15", "2015-10-29", "2015-11-13", "2015-11-27", "2015-12-15", "2015-12-30", "2016-01-15", "2016-01-28", "2016-02-15", "2016-02-26", "2016-03-15", "2016-03-30", "2016-04-15", "2016-04-28", "2016-05-13", "2016-05-30", "2016-06-15", "2016-06-29", "2016-07-15", "2016-07-28", "2016-08-15", "2016-08-30", "2016-09-14", "2016-09-29", "2016-10-14", "2016-10-28", "2016-11-15", "2016-11-29", "2016-12-15", "2016-12-29", "2017-01-13", "2017-01-25", "2017-02-15", "2017-02-27", "2017-03-15", "2017-03-30", "2017-04-14", "2017-04-27", "2017-05-15", "2017-05-26", "2017-06-15", "2017-06-29", "2017-07-14", "2017-07-28", "2017-08-15", "2017-08-30", "2017-09-15", "2017-09-28", "2017-10-13", "2017-10-30", "2017-11-15", "2017-11-29", "2017-12-15", "2017-12-28", "2018-01-15", "2018-01-30", "2018-02-14", "2018-02-27", "2018-03-15", "2018-03-29", "2018-04-13", "2018-04-26", "2018-05-15", "2018-05-30", "2018-06-15", "2018-06-28", "2018-07-13", "2018-07-30", "2018-08-15", "2018-08-30", "2018-09-14", "2018-09-27", "2018-10-15", "2018-10-30", "2018-11-15", "2018-11-29", "2018-12-14", "2018-12-27", "2019-01-15", "2019-01-30", "2019-02-15", "2019-02-27", "2019-03-15", "2019-03-28", "2019-04-15", "2019-04-29", "2019-05-15", "2019-05-30", "2019-06-14", "2019-06-27", "2019-07-15", "2019-07-30", "2019-08-15", "2019-08-29", "2019-09-12", "2019-09-27", "2019-10-15", "2019-10-30", "2019-11-15", "2019-11-28", "2019-12-13", "2019-12-30", "2020-01-15", "2020-01-22", "2020-02-14", "2020-02-27", "2020-03-13", "2020-03-30", "2020-04-15", "2020-04-29", "2020-05-15", "2020-05-28", "2020-06-15", "2020-06-29", "2020-07-15", "2020-07-30", "2020-08-14", "2020-08-28", "2020-09-15", "2020-09-29", "2020-10-15", "2020-10-29", "2020-11-13", "2020-11-27", "2020-12-15", "2020-12-30", "2021-01-15", "2021-01-28", "2021-02-10", "2021-02-25", "2021-03-15", "2021-03-30", "2021-04-15", "2021-04-29", "2021-05-14", "2021-05-28", "2021-06-15", "2021-06-29", "2021-07-15", "2021-07-29", "2021-08-13", "2021-08-30", "2021-09-15", "2021-09-29", "2021-10-15", "2021-10-28", "2021-11-15", "2021-11-29", "2021-12-15", "2021-12-30", "2022-01-14", "2022-01-27", "2022-02-15", "2022-02-25", "2022-03-15", "2022-03-30", "2022-04-15", "2022-04-28", "2022-05-13", "2022-05-30", "2022-06-15", "2022-06-29", "2022-07-15", "2022-07-28", "2022-08-15", "2022-08-30", "2022-09-15", "2022-09-29", "2022-10-14", "2022-10-28", "2022-11-15", "2022-11-29", "2022-12-15", "2022-12-29", "2023-01-13", "2023-01-30", "2023-02-15", "2023-02-27", "2023-03-15", "2023-03-30", "2023-04-14", "2023-04-27", "2023-05-15", "2023-05-30", "2023-06-15", "2023-06-29", "2023-07-14", "2023-07-28", "2023-08-15", "2023-08-30", "2023-09-15", "2023-09-27", "2023-10-13", "2023-10-30", "2023-11-15", "2023-11-29", "2023-12-15", "2023-12-28", "2024-01-15", "2024-01-30", "2024-02-08", "2024-02-28", "2024-03-15", "2024-03-28", "2024-04-15", "2024-04-29", "2024-05-15", "2024-05-30", "2024-06-14", "2024-06-27", "2024-07-15", "2024-07-30", "2024-08-15", "2024-08-29", "2024-09-13", "2024-09-27", "2024-10-15", "2024-10-30", "2024-11-15", "2024-11-28", "2024-12-13", "2024-12-30", "2025-01-15", "2025-01-24", "2025-02-14", "2025-02-27", "2025-03-14", "2025-03-28", "2025-04-15", "2025-04-29", "2025-05-15", "2025-05-29", "2025-06-13", "2025-06-27", "2025-07-15", "2025-07-30", "2025-08-15", "2025-08-28", "2025-09-15", "2025-09-29", "2025-10-15", "2025-10-30", "2025-11-14", "2025-11-27", "2025-12-15", "2025-12-30", "2026-01-15", "2026-01-29", "2026-02-13", "2026-02-26", "2026-03-13", "2026-03-30", "2026-04-15", "2026-04-29", "2026-05-15", "2026-05-28", "2026-06-15", "2026-06-29", "2026-07-15"], "bm_navs": [1.0, 0.9802731411229135, 0.9320940819423368, 0.9400606980273142, 0.9017450682852806, 0.8975720789074355, 0.8509104704097116, 0.8922610015174505, 0.866843702579666, 0.88391502276176, 0.8611532625189678, 0.844461305007587, 0.8175265553869496, 0.9089529590288312, 0.9554353566009102, 0.9969760242792106, 1.0312086115326249, 1.0650565629742033, 0.9931296661608496, 0.9727439681335356, 0.9592817147192716, 0.9388960166919573, 0.9492811836115325, 0.9631280728376326, 1.0135153641881636, 0.9362035660091046, 0.8415831562974202, 0.9019709787556903, 0.8592764036418815, 0.9131254172989376, 0.9119715098634292, 0.9796674127465858, 0.9427423748103186, 0.9696668816388466, 0.944280918057663, 0.9223566767830046, 0.958127807283763, 0.9462040971168434, 0.9035095220030349, 0.8669691198786038, 0.8736270106221548, 0.898789984825493, 0.8449254931714717, 0.8327371775417297, 0.8453186646433988, 0.8740201820940817, 0.8453186646433988, 0.8417801213960544, 0.8476776934749619, 0.857113808801214, 0.8512162367223066, 0.8657635811836115, 0.9302437025796662, 0.9451842185128985, 0.9278846737481032, 0.9738857359635813, 0.9793901365705617, 0.9829286798179063, 0.9845013657056148, 1.0301092564491656, 1.09458937784522, 1.2797731411229136, 1.3682367223065253, 1.4272124430955995, 1.3765326251896817, 1.3737509484066772, 1.4170656297420339, 1.4297818664643407, 1.6197306525037944, 1.7361636949924135, 1.8871690060698039, 1.8231904400606993, 1.913396244309561, 2.054864377845221, 1.6618531866464352, 1.5676735584218522, 1.530319613050077, 1.630062594840669, 1.3518949165402134, 1.2608943474962073, 1.2712262898330813, 1.409117981790593, 1.4242185128983318, 1.5116426403641892, 1.433755690440062, 1.4850180197268599, 1.5148216995447659, 1.259304817905919, 1.1501918816388474, 1.1865264795144166, 1.1841041729893786, 1.2329540212443106, 1.297952579666162, 1.3177347496206386, 1.2741332321699559, 1.2406246585735976, 1.2361837632776949, 1.2608105462822474, 1.274133232169956, 1.3415540971168454, 1.3181384673748118, 1.391615098634296, 1.3625474203338408, 1.3310574355083475, 1.3371132018209422, 1.3605288315629755, 1.3738515174506842, 1.4061489377845233, 1.465495447647953, 1.3706217754173002, 1.3544730652503807, 1.3625474203338404, 1.3840048558421862, 1.404520789074356, 1.4114962063732939, 1.4184716236722315, 1.4069827010622162, 1.4299605462822464, 1.413137481031867, 1.392621547799697, 1.4307811836115332, 1.45211775417299, 1.514075872534143, 1.5407465857359637, 1.5493632776934751, 1.541156904400607, 1.5965499241274659, 1.598601517450683, 1.595729286798179, 1.6363508345978754, 1.6679453717754174, 1.6929748103186648, 1.6827168437025797, 1.6515326251896814, 1.6671247344461304, 1.7500091047040969, 1.7655515933232169, 1.6436464339908952, 1.6838668437025797, 1.6979647192716238, 1.6179385432473445, 1.6025967374810322, 1.553254172989378, 1.6262314112291354, 1.545375948406677, 1.5673520485584218, 1.4288611532625193, 1.4653497723823978, 1.4769597875569045, 1.3898846737481032, 1.4164218512898334, 1.3695671471927167, 1.4396418816388472, 1.3210538694992415, 1.31359028831563, 1.3687378603945377, 1.3276881638846743, 1.3380542488619125, 1.2654916540212449, 1.3218831562974207, 1.3401579666160852, 1.4115598254931718, 1.550561077389985, 1.578023330804249, 1.57041839908953, 1.6718174886191204, 1.6452002276176028, 1.5683059180576637, 1.5421111532625191, 1.550561077389985, 1.6308353566009106, 1.6346378224582703, 1.6578751138088013, 1.5856282625189682, 1.6270328907435507, 1.7060396813353564, 1.6544951441578146, 1.6887173368740511, 1.6675925265553866, 1.6659025417298932, 1.6604100910470405, 1.7031089529590282, 1.7490345220030346, 1.782083763277693, 1.7679198027314105, 1.7069718512898326, 1.7473176783004547, 1.6692012898330797, 1.5734872534142634, 1.6237049317147185, 1.652891274658573, 1.674781031866464, 1.6524620637329281, 1.6979584218512893, 1.771782701062215, 2.0533450682852803, 2.023300303490136, 2.0507698027314105, 2.110430121396054, 2.0374642640364184, 2.000122913505311, 2.0889695751138087, 2.080814567526555, 2.111717754172989, 2.170090440060698, 2.1516343702579666, 2.222454172989378, 2.3718195751138085, 2.341739567526555, 2.5252519347496207, 2.38218186646434, 2.191711684370258, 2.2121502655538694, 2.151269385432473, 2.249548520485584, 2.229544802731411, 2.3186918057663117, 2.253027427921092, 2.272161418816387, 2.2643338770864934, 2.133439984825492, 2.1825795523520473, 2.1225683990895288, 2.1503996585735954, 2.1399629362670702, 2.1769263277693462, 2.152139112291349, 2.1586620637329275, 2.1434418437025786, 2.2086713581183597, 2.172577693474961, 2.0847352807283746, 2.04264984825493, 2.026750303490135, 2.016150606980272, 1.7546914264036406, 1.8765879362670699, 1.846555462822457, 1.729075493171471, 1.7586663125948396, 1.7776574355083448, 1.892487481031865, 1.9688936267071309, 1.8969040212443085, 1.8898375569043995, 1.8748213201820931, 1.8288893019726848, 1.8063649468892249, 1.7198007587253406, 1.7237756449165391, 1.591721092564491, 1.733492033383914, 1.725983915022761, 1.7723575872534134, 1.7321670713201816, 1.8302142640364183, 1.8863476858877086, 1.8464226100151742, 1.8145722685887706, 1.784964908952959, 1.8123292867981786, 1.832067526555386, 1.7881050834597871, 1.7921424506828523, 1.7217128224582698, 1.7683668437025795, 1.7311333459787552, 1.772852807283763, 1.8248899848254927, 1.758049127465857, 1.7306847496206372, 1.6988344081942335, 1.6947970409711686, 1.6759559939301973, 1.6382738998482549, 1.648591616084977, 1.5961058421851289, 1.530610773899848, 1.5651526934749618, 1.500554817905918, 1.4859238998482547, 1.540449013657056, 1.5798537177541725, 1.6316296661608494, 1.6082617602427915, 1.6215493930197264, 1.6568303490136564, 1.6600377086494682, 1.6476664643399084, 1.628422306525037, 1.5945159332321692, 1.61559286798179, 1.5720644157814863, 1.5615259484066761, 1.5335761001517447, 1.4790509863429435, 1.77275349013657, 1.8011615326251889, 1.8194893019726852, 1.857977617602427, 1.813532776934749, 1.8419408194233677, 1.8721816388467367, 1.7791682094081935, 1.800245144157814, 1.8483555386949915, 1.8634759484066763, 1.881345523520485, 1.8364424886191195, 1.7645059939301968, 1.7727534901365702, 1.837817071320182, 1.817198330804249, 1.8236130500758727, 1.8567166160849773, 1.91059559939302, 1.982746585735964, 2.0122628983308046, 2.135950303490137, 2.1687462063732927, 2.2151289833080425, 2.204821699544765, 2.2596377086494694, 2.221219650986343, 2.1654666160849776, 2.186549696509864, 2.2362120637329292, 2.2840003793626718, 2.2919320182094083, 2.245305045523521, 2.276069233687406, 2.248189188163885, 2.1631069802731413, 2.2563609256449166, 2.3174086115326253, 2.3448079666160853, 2.370765250379363, 2.3645162746585733, 2.383743892261001, 2.325580349013657], "shadow_strategies": [], "regime_counts": {"中波": 200, "低波": 111, "高波": 73}};
 
 // ── NAV + Benchmark + Drawdown ──
 var traces = [];

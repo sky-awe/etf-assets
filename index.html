@@ -236,7 +236,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
       <a href="#performance">收益分析</a>
       <a href="#appendix">附录</a>
     </div>
-    <span class="topnav-time">2026-09-01 14:44:33</span>
+    <span class="topnav-time">2026-09-01 15:11:18</span>
     <button class="theme-toggle" id="theme-toggle" type="button" title="切换深色/浅色主题" aria-label="切换主题">🌙</button>
   </div>
 </nav>
@@ -258,7 +258,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
         <p>模型目标已锁定，但尚无可审计成交证据；不能把目标权重视为券商实际持仓。</p>
       </div>
       <div class="action-meta">
-        <div><span>最新信号</span><b>2026-08-28</b></div>
+        <div><span>最新收盘信号</span><b>2026-08-28</b></div>
         <div><span>下一步</span><b>券商侧自动驾驶将在 D+1 执行并自动写入成交证据；异常时保持停机</b></div>
         <div><span>健康状态</span><b>WARN</b></div>
       </div>
@@ -316,12 +316,12 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 
 <div class="countdown-bar ">
   <div class="countdown-item">
-    <span>下次调仓</span>
+    <span>下次信号日（D收盘）</span>
     <b>2026-09-15</b>
     <em><b>14</b> 天后 · Tuesday</em>
   </div>
   <div class="countdown-item">
-    <span>最新信号</span>
+    <span>最新收盘信号</span>
     <b>2026-08-28</b>
     <em>高波 体制</em>
   </div>
@@ -397,8 +397,8 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 </div>
 <section class="panel diff-panel">
   <div class="panel-title">
-    <h2>本期调仓变动 · 2026-08-14 → 2026-08-28</h2>
-    <span>单边换手 4.6% · 预估成本 0.001% · 2 项变动</span>
+    <h2>本期模型目标变动 · 2026-08-14 → 2026-08-28</h2>
+    <span>日期为 D 日收盘信号 · 单边换手 4.6% · 预估成本 0.001% · 2 项变动</span>
   </div>
   <div class="table-wrap" style="margin-top:12px"><table>
     <tr><th>代码</th><th>名称</th><th>旧权重</th><th>新权重</th><th>变动</th></tr>
@@ -732,7 +732,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
   <div class="section"><h2>按期收益分布</h2>
     <div class="chart-card" id="returns-chart" style="height:320px"></div>
   </div>
-  <div class="section"><h2>当前默认跟单持仓 (2026-08) · 体制分布</h2>
+  <div class="section"><h2>当前默认跟单目标 (2026-08) · 体制分布</h2>
     <div class="table-wrap" style="margin-bottom:16px"><table>
       <tr><th>代码</th><th>名称</th><th>权重</th><th></th></tr>
       <tr>
@@ -752,9 +752,12 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 </div>
 
 <!-- Monthly Detail -->
-<div class="section"><h2>按期明细 (最近36期)</h2>
+<div class="section"><h2>按信号期明细 (最近36期)</h2>
+  <div class="observation-note">
+    日期是 D 日收盘信号，不代表当天已经成交；模型参考收益按 D+1 开盘持有至下期信号后的 D+1 开盘。实际持仓和账户收益以券商成交与账户净值为准。
+  </div>
   <div class="table-wrap"><table>
-    <tr><th>日期</th><th>收益</th><th>净值</th><th>体制</th><th>持仓</th></tr>
+    <tr><th>信号日（D收盘）</th><th>模型参考收益（D+1开盘→下期D+1开盘）</th><th>模型净值</th><th>体制</th><th>模型目标</th></tr>
     <tr>
   <td>2026-08-14</td>
   <td><span style="color:var(--red);font-weight:700">+5.53%</span></td>
@@ -1980,7 +1983,7 @@ footer { padding:36px 0; border-top:1px solid var(--border); text-align:center; 
 
 <footer>
   <div style="margin-bottom:8px">v5.3 ETF Momentum Rotation · 层级Top-6风险 + 1防御 · 双周调仓 · 60/25/15 动量 · breadth66 + 波动率目标制</div>
-  <div style="opacity:0.7">生成于 2026-09-01 14:44:33 · 28 只 ETF · 数据仅供研究参考，不构成投资建议</div>
+  <div style="opacity:0.7">生成于 2026-09-01 15:11:18 · 28 只 ETF · 数据仅供研究参考，不构成投资建议</div>
 </footer>
 </div>
 
